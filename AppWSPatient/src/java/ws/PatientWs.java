@@ -37,7 +37,7 @@ public class PatientWs {
     @GET
     @Path("all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Patient> obatenerUsuarios(){
+    public List<Patient> getAll(){
         List<Patient> patients = null;
         SqlSession conexionDB = MyBatisUtil.getSesion();
         
