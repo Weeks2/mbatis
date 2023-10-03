@@ -37,7 +37,7 @@ public class PatientWs {
     @GET
     @Path("all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Patient> getAll(){
+    public List<Patient> getPatients(){
         List<Patient> patients = null;
         SqlSession conexionDB = MyBatisUtil.getSesion();
         
@@ -74,7 +74,7 @@ public class PatientWs {
     @POST
     @Path("save")
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje savePatient(@FormParam("nombre") String nombre,
+    public Mensaje save(@FormParam("nombre") String nombre,
                                      @FormParam("apellidoPaterno") String apellidoPaterno,
                                      @FormParam("apellidoMaterno") String apellidoMaterno,
                                      @FormParam("fechaNacimiento") String fechaNacimiento,
@@ -209,7 +209,7 @@ public class PatientWs {
     
     if(conexionDB != null){
         try{
-            int numeroFilasAfectadas = conexionDB.delete("paciente.eliminarPaciente", (id));
+            int numeroFilasAfectadas = conexionDB.delete("patients.del", (id));
             conexionDB.commit();
             if(numeroFilasAfectadas > 0){
                 msj.setError(false);

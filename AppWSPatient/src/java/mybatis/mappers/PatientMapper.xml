@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE idPaciente = #{idPaciente}
     </update>
     
-    <delete id="delete" parameterType="int">
+    <delete id="del" parameterType="int">
         DELETE FROM paciente WHERE idPaciente = #{idPaciente}
     </delete>
 </mapper>
