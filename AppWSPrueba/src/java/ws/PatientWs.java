@@ -54,91 +54,72 @@ public class PatientWs {
     }
     
     @GET
-    @Path("usuarioId/{idUsuario}")
+    @Path("obtenerPacientePorIdMedico/{idMedico}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Usuario obtenerUsuarioPorId(@PathParam("idUsuario") Integer idUsuario){
-        Usuario usuario = null;
+    public List<Patient> obtenerPacientePorIdMedico(@PathParam("idMedico") Integer idMedico){
+        List<Patient> paciente = null;
         SqlSession conexionDB = MyBatisUtil.getSesion();
         
         if(conexionDB != null){
             try{
-                usuario = conexionDB.selectOne("usuarios.obtenerPorId", idUsuario);
-            }catch (Exception e){
-            } finally{
-                conexionDB.close();
-            }
-        }
-        return usuario;
-    }
-    
-    @GET
-    @Path("usuarioNombre/{nombreUsuario}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Usuario obtenerUsuarioPorNombre(@PathParam("nombreUsuario") String nombreUsuario){
-        Usuario usuario = null;
-        SqlSession conexionDB = MyBatisUtil.getSesion();
-        
-        if(conexionDB != null){
-            try{
-                usuario = conexionDB.selectOne("usuarios.obtenerPorNombre", nombreUsuario);
+                paciente = conexionDB.selectList("paciente.obtenerPorIdMedico", idMedico);
             }catch (Exception e){
                e.printStackTrace();
             } finally{
                 conexionDB.close();
             }
         }
-        return usuario;
-    }
-    
-    @GET
-    @Path("usuarioCorreo/{correoUsuario}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Usuario obtenerUsuarioPorCorreo(@PathParam("correoUsuario") String correoUsuario){
-        Usuario usuario = null;
-        SqlSession conexionDB = MyBatisUtil.getSesion();
-        
-        if(conexionDB != null){
-            try{
-                usuario = conexionDB.selectOne("usuarios.obtenerPorCorreo", correoUsuario);
-            }catch (Exception e){
-               e.printStackTrace();
-            } finally{
-                conexionDB.close();
-            }
-        }
-        return usuario;
+        return paciente;
     }
     
     @POST
-    @Path("registrar")
+    @Path("registrarPaciente")
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje registrarUsuario(@FormParam("nombre") String nombre,
-                                    @FormParam("apellidoPaterno") String apellidoPaterno,
-                                    @FormParam("apellidoMaterno") String apellidoMaterno,
-                                    @FormParam("correo") String correo,
-                                    @FormParam("password") String password){
+    public Mensaje registrarPaciente(@FormParam("nombre") String nombre,
+                                     @FormParam("apellidoPaterno") String apellidoPaterno,
+                                     @FormParam("apellidoMaterno") String apellidoMaterno,
+                                     @FormParam("fechaNacimiento") String fechaNacimiento,
+                                     @FormParam("sexo") String sexo,
+                                     @FormParam("peso") float peso,
+                                     @FormParam("estatura") float estatura,
+                                     @FormParam("tallaInicial") int tallaInicial,
+                                     @FormParam("email") String email,
+                                     @FormParam("telefono") String telefono,
+                                     @FormParam("password") String password,
+                                     @FormParam("fotografia") byte[] fotografia,
+                                     @FormParam("idDomicilio") Integer idDomicilio,
+                                     @FormParam("idMedico") Integer idMedico){
                                     
         
-    Usuario usuario = new Usuario();
-    usuario.setNombre(nombre);
-    usuario.setApellidoPaterno(apellidoPaterno);
-    usuario.setApellidoMaterno(apellidoMaterno);
-    usuario.setCorreo(correo);
-    usuario.setPassword(password);
+    Patient paciente = new Patient();
+    paciente.setNombre(nombre);
+    paciente.setApellidoPaterno(apellidoPaterno);
+    paciente.setApellidoMaterno(apellidoMaterno);
+    paciente.setFechaNacimiento(fechaNacimiento);
+    paciente.setSexo(sexo);
+    paciente.setPeso(peso);
+    paciente.setEstatura(estatura);
+    paciente.setTallaInicial(tallaInicial);
+    paciente.setEmail(email);
+    paciente.setTelefono(telefono);
+    paciente.setPassword(password);
+    paciente.setFotografia(fotografia);
+    paciente.setIdDomicilio(idDomicilio);
+    paciente.setIdMedico(idMedico);
     
     Mensaje msj = new Mensaje();
     SqlSession conexionDB = MyBatisUtil.getSesion();
     
     if(conexionDB != null){
         try{
-            int numeroFilasAfectadas = conexionDB.insert("usuarios.registrar", usuario);
+            int numeroFilasAfectadas = conexionDB.insert("paciente.registrarPaciente", paciente);
             conexionDB.commit();
             if(numeroFilasAfectadas > 0){
                 msj.setError(false);
-                msj.setMensaje("Información del Usuario registrada con éxito");
+                msj.setMensaje("Información del Paciente registrada con éxito");
             }else{
                 msj.setError(true);
-                msj.setMensaje("Lo sentimos, no se pudo registrar la información del Usuario.");
+                msj.setMensaje("Lo sentimos, no se pudo registrar la información del Paciente.");
             }
         }catch(Exception e){
             msj.setError(true);
@@ -157,35 +138,52 @@ public class PatientWs {
     @PUT
     @Path("editar")
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje editarUsuario(@FormParam("nombre") String nombre,
-                                 @FormParam("idUsuario") Integer idUsuario,
-                                 @FormParam("apellidoPaterno") String apellidoPaterno,
-                                 @FormParam("apellidoMaterno") String apellidoMaterno,
-                                 @FormParam("correo") String correo,
-                                 @FormParam("password") String password){
+    public Mensaje editarPaciente(@FormParam("idPaciente") Integer idPaciente,
+                                  @FormParam("nombre") String nombre,
+                                  @FormParam("apellidoPaterno") String apellidoPaterno,
+                                  @FormParam("apellidoMaterno") String apellidoMaterno,
+                                  @FormParam("fechaNacimiento") String fechaNacimiento,
+                                  @FormParam("sexo") String sexo,
+                                  @FormParam("peso") float peso,
+                                  @FormParam("estatura") float estatura,
+                                  @FormParam("tallaInicial") int tallaInicial,
+                                  @FormParam("telefono") String telefono,
+                                  @FormParam("password") String password,
+                                  @FormParam("fotografia") byte[] fotografia,
+                                  @FormParam("idDomicilio") Integer idDomicilio,
+                                  @FormParam("idMedico") Integer idMedico){
         
         Mensaje msj = new Mensaje();
         HashMap<String, Object> parametros = new HashMap<>();
-        parametros.put("idUsuario", idUsuario);
+        parametros.put("idPaciente", idPaciente);
         parametros.put("nombre", nombre);
         parametros.put("apellidoPaterno", apellidoPaterno);
         parametros.put("apellidoMaterno", apellidoMaterno);
+        parametros.put("fechaNacimiento", fechaNacimiento);
+        parametros.put("sexo", sexo);
+        parametros.put("peso", peso);
+        parametros.put("estatura", estatura);
+        parametros.put("tallaInicial", tallaInicial);
+        parametros.put("telefono", telefono);
         parametros.put("password", password);
+        parametros.put("fotografia", fotografia);
+        parametros.put("idDomicilio", idDomicilio);
+        parametros.put("idMedico", idMedico);
         
         SqlSession conexionDB = MyBatisUtil.getSesion();
     
         if (conexionDB != null) {
             try {
-                Usuario usuaerioExistente = conexionDB.selectOne("usuarios.obtenerPorId", idUsuario);
+                Patient usuaerioExistente = conexionDB.selectOne("paciente.obtenerPacientePorId", idPaciente);
                 if (usuaerioExistente != null) {
-                    int numeroFilasAfectadas = conexionDB.update("usuarios.editar", parametros);
+                    int numeroFilasAfectadas = conexionDB.update("paciente.editarPaciente", parametros);
                     conexionDB.commit();
                     if (numeroFilasAfectadas > 0) {
                         msj.setError(false);
-                        msj.setMensaje("Usuario actualizado con éxito.");
+                        msj.setMensaje("Paciente actualizado con éxito.");
                     } else {
                         msj.setError(true);
-                        msj.setMensaje("Lo sentimos, no se pudo actualizar la información del Usuario.");
+                        msj.setMensaje("Lo sentimos, no se pudo actualizar la información del Paciente.");
                     }
                 }
             } catch (Exception e) {
@@ -203,23 +201,23 @@ public class PatientWs {
     }
     
     @DELETE
-    @Path("eliminar/{idUsuario}")
+    @Path("eliminar/{idPaciente}")
     @Produces(MediaType.TEXT_PLAIN)
-    public Mensaje eliminarUsuario(@FormParam("idUsuario") Integer idUsuario){
+    public Mensaje eliminarUsuario(@FormParam("idPaciente") Integer idPaciente){
     
     Mensaje msj = new Mensaje();
     SqlSession conexionDB = MyBatisUtil.getSesion();
     
     if(conexionDB != null){
         try{
-            int numeroFilasAfectadas = conexionDB.delete("usuarios.eliminarUsuarioPorId", (idUsuario));
+            int numeroFilasAfectadas = conexionDB.delete("paciente.eliminarPaciente", (idPaciente));
             conexionDB.commit();
             if(numeroFilasAfectadas > 0){
                 msj.setError(false);
-                msj.setMensaje("Información del Usuario eliminada con éxito");
+                msj.setMensaje("Información del Paciente eliminada con éxito");
             }else{
                 msj.setError(true);
-                msj.setMensaje("Lo sentimos, no se pudo eliminar la información del Usuario.");
+                msj.setMensaje("Lo sentimos, no se pudo eliminar la información del Paciente.");
             }
         }catch(Exception e){
             msj.setError(true);
