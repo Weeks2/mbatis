@@ -54,28 +54,27 @@ public class PatientWs {
     }
     
     @GET
-    @Path("obtenerPacientePorIdMedico/{idMedico}")
+    @Path("doctor/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Patient> obtenerPacientePorIdMedico(@PathParam("idMedico") Integer idMedico){
-        List<Patient> paciente = null;
+    public List<Patient> getByDrId(@PathParam("id") Integer id){
+        List<Patient> patient = null;
         SqlSession conexionDB = MyBatisUtil.getSesion();
         
         if(conexionDB != null){
             try{
-                paciente = conexionDB.selectList("paciente.obtenerPorIdMedico", idMedico);
+                patient = conexionDB.selectList("patients.getByDrId", id);
             }catch (Exception e){
-               e.printStackTrace();
             } finally{
                 conexionDB.close();
             }
         }
-        return paciente;
+        return patient;
     }
     
     @POST
-    @Path("registrarPaciente")
+    @Path("save")
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje registrarPaciente(@FormParam("nombre") String nombre,
+    public Mensaje savePatient(@FormParam("nombre") String nombre,
                                      @FormParam("apellidoPaterno") String apellidoPaterno,
                                      @FormParam("apellidoMaterno") String apellidoMaterno,
                                      @FormParam("fechaNacimiento") String fechaNacimiento,
@@ -91,28 +90,28 @@ public class PatientWs {
                                      @FormParam("idMedico") Integer idMedico){
                                     
         
-    Patient paciente = new Patient();
-    paciente.setNombre(nombre);
-    paciente.setApellidoPaterno(apellidoPaterno);
-    paciente.setApellidoMaterno(apellidoMaterno);
-    paciente.setFechaNacimiento(fechaNacimiento);
-    paciente.setSexo(sexo);
-    paciente.setPeso(peso);
-    paciente.setEstatura(estatura);
-    paciente.setTallaInicial(tallaInicial);
-    paciente.setEmail(email);
-    paciente.setTelefono(telefono);
-    paciente.setPassword(password);
-    paciente.setFotografia(fotografia);
-    paciente.setIdDomicilio(idDomicilio);
-    paciente.setIdMedico(idMedico);
+    Patient patient = new Patient();
+    patient.setNombre(nombre);
+    patient.setApellidoPaterno(apellidoPaterno);
+    patient.setApellidoMaterno(apellidoMaterno);
+    patient.setFechaNacimiento(fechaNacimiento);
+    patient.setSexo(sexo);
+    patient.setPeso(peso);
+    patient.setEstatura(estatura);
+    patient.setTallaInicial(tallaInicial);
+    patient.setEmail(email);
+    patient.setTelefono(telefono);
+    patient.setPassword(password);
+    patient.setFotografia(fotografia);
+    patient.setIdDomicilio(idDomicilio);
+    patient.setIdMedico(idMedico);
     
     Mensaje msj = new Mensaje();
     SqlSession conexionDB = MyBatisUtil.getSesion();
     
     if(conexionDB != null){
         try{
-            int numeroFilasAfectadas = conexionDB.insert("paciente.registrarPaciente", paciente);
+            int numeroFilasAfectadas = conexionDB.insert("patients.save", patient);
             conexionDB.commit();
             if(numeroFilasAfectadas > 0){
                 msj.setError(false);
@@ -136,9 +135,9 @@ public class PatientWs {
     }
     
     @PUT
-    @Path("editar")
+    @Path("edit")
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje editarPaciente(@FormParam("idPaciente") Integer idPaciente,
+    public Mensaje edit(@FormParam("idPaciente") Integer idPaciente,
                                   @FormParam("nombre") String nombre,
                                   @FormParam("apellidoPaterno") String apellidoPaterno,
                                   @FormParam("apellidoMaterno") String apellidoMaterno,
@@ -174,9 +173,9 @@ public class PatientWs {
     
         if (conexionDB != null) {
             try {
-                Patient usuaerioExistente = conexionDB.selectOne("paciente.obtenerPacientePorId", idPaciente);
+                Patient usuaerioExistente = conexionDB.selectOne("patients.getById", idPaciente);
                 if (usuaerioExistente != null) {
-                    int numeroFilasAfectadas = conexionDB.update("paciente.editarPaciente", parametros);
+                    int numeroFilasAfectadas = conexionDB.update("patients.edit", parametros);
                     conexionDB.commit();
                     if (numeroFilasAfectadas > 0) {
                         msj.setError(false);
@@ -201,16 +200,16 @@ public class PatientWs {
     }
     
     @DELETE
-    @Path("eliminar/{idPaciente}")
+    @Path("del/{id}")
     @Produces(MediaType.TEXT_PLAIN)
-    public Mensaje eliminarUsuario(@FormParam("idPaciente") Integer idPaciente){
+    public Mensaje del(@FormParam("id") Integer id){
     
     Mensaje msj = new Mensaje();
     SqlSession conexionDB = MyBatisUtil.getSesion();
     
     if(conexionDB != null){
         try{
-            int numeroFilasAfectadas = conexionDB.delete("paciente.eliminarPaciente", (idPaciente));
+            int numeroFilasAfectadas = conexionDB.delete("paciente.eliminarPaciente", (id));
             conexionDB.commit();
             if(numeroFilasAfectadas > 0){
                 msj.setError(false);
