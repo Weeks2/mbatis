@@ -15,25 +15,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM paciente
     </select>
     
-    <select id = "obtenerPorId" resultType = "pojo.Patient" parameterType = "int">
+    <select id = "getByDrId" resultType = "pojo.Patient" parameterType = "int">
         SELECT * FROM paciente WHERE idPaciente = #{idPaciente}
     </select>
         
-    <insert id = "registrarPaciente" parameterType = "modelo.pojo.Patient">
+    <insert id = "save" parameterType = "modelo.pojo.Patient">
         INSERT INTO paciente(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, sexo, peso, estatura, tallaInicial, email, telefono, password, fotografia,
                              idDomicilio, idMedico)
         VALUES (#{nombre}, #{apellidoPaterno}, #{apellidoMaterno}, #{fechaNacimiento,}, #{sexo}, #{peso}, #{estatura}, #{tallaInicial}, #{email}, #{telefono}, 
                 #{password}, #{fotografia}, #{idDomicilio}, #{idMedico})
     </insert>
     
-    <update id = "editarPaciente" parameterType = "map">
+    <update id = "edit" parameterType = "map">
         UPDATE paciente SET nombre = #{nombre}, apellidoPaterno = #{apellidoPaterno}, apellidoMaterno = #{apellidoMaterno}, fechaNacimiento = #{fechaNacimiento},
                             sexo = #{sexo}, peso = #{peso}, estatura = #{estatura}, tallaInicial = #{tallaInicial}, email = #{email}, telefono = #{telefono}, 
                             password = #{password}, fotografia = #{fotografia}, idDomicilio = #{idDomicilio}, idMedico = #{idMedico}
         WHERE idPaciente = #{idPaciente}
     </update>
     
-    <delete id="eliminarPaciente" parameterType="int">
+    <delete id="delete" parameterType="int">
         DELETE FROM paciente WHERE idPaciente = #{idPaciente}
     </delete>
 </mapper>
