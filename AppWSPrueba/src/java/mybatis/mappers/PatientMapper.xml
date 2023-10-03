@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "patients">
+    
+    <select id = "getPatients" resultType = "pojo.Usuario">
+        SELECT * FROM paciente
+    </select>
+    
+    <select id = "obtenerPorId" resultType = "pojo.Usuario" parameterType = "int">
+        SELECT * FROM usuarios WHERE idUsuario = #{idUsuario}
+    </select>
+    
+    <select id = "obtenerPorNombre" resultType = "pojo.Usuario" parameterType = "String">
+        SELECT * FROM usuarios WHERE nombre = #{nombreUsuario}
+    </select>
+    
+    <select id = "obtenerPorCorreo" resultType = "pojo.Usuario" parameterType = "String">
+        SELECT * FROM usuarios WHERE correo = #{correoUsuario}
+    </select>
+    
+    <insert id = "registrar" parameterType = "pojo.Usuario">
+        INSERT INTO usuarios(nombre, apellidoPaterno, apellidoMaterno, correo, password)
+        VALUES (#{nombre}, #{apellidoPaterno}, #{apellidoMaterno}, #{correo}, #{password})
+    </insert>
+    
+    <update id = "editar" parameterType = "map">
+        UPDATE usuarios SET nombre = #{nombre}, apellidoPaterno = #{apellidoPaterno}, apellidoMaterno = #{apellidoMaterno}, password = #{password}
+        WHERE idUsuario = #{idUsuario}
+    </update>
+    
+    <delete id="eliminarUsuarioPorId" parameterType="int">
+        DELETE FROM usuarios WHERE idUsuario = #{idUsuario}
+    </delete>
+    
+</mapper>

@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 import pojo.Mensaje;
+import pojo.Patient;
 import pojo.Usuario;
 
 /**
@@ -34,23 +35,22 @@ public class PatientWs {
     public PatientWs() {
     }
     @GET
-    @Path("listaUsuarios")
+    @Path("all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Usuario> obatenerUsuarios(){
-        List<Usuario> usuarios = null;
+    public List<Patient> obatenerUsuarios(){
+        List<Patient> patients = null;
         SqlSession conexionDB = MyBatisUtil.getSesion();
         
         if(conexionDB != null){
             try{
-                usuarios = conexionDB.selectList("usuarios.obtenerUsuarios");
+                patients = conexionDB.selectList("patients.getPatients");
             }catch (Exception e){
-               e.printStackTrace();
             } finally{
                 conexionDB.close();
             }
         }
         
-        return usuarios;
+        return patients;
     }
     
     @GET
@@ -64,7 +64,6 @@ public class PatientWs {
             try{
                 usuario = conexionDB.selectOne("usuarios.obtenerPorId", idUsuario);
             }catch (Exception e){
-               e.printStackTrace();
             } finally{
                 conexionDB.close();
             }
