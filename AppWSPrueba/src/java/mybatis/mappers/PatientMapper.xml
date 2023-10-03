@@ -16,29 +16,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <select id = "obtenerPorId" resultType = "pojo.Usuario" parameterType = "int">
-        SELECT * FROM paciente WHERE idUsuario = #{idUsuario}
+        SELECT * FROM paciente WHERE idPaciente = #{idPaciente}
     </select>
     
-    <select id = "obtenerPorNombre" resultType = "pojo.Usuario" parameterType = "String">
-        SELECT * FROM paciente WHERE nombre = #{nombreUsuario}
+    <select id = "obtenerPorIdMedico" resultType = "modelo.pojo.Paciente" parameterType = "int">
+        SELECT * FROM paciente WHERE idMedico = #{idMedico}
     </select>
     
-    <select id = "obtenerPorCorreo" resultType = "pojo.Usuario" parameterType = "String">
-        SELECT * FROM paciente WHERE correo = #{correoUsuario}
-    </select>
-    
-    <insert id = "registrar" parameterType = "pojo.Usuario">
-        INSERT INTO paciente apellidoPaterno, apellidoMaterno, correo, password)
-        VALUES (#{nombre}, #{apellidoPaterno}, #{apellidoMaterno}, #{correo}, #{password})
+    <insert id = "registrarPaciente" parameterType = "modelo.pojo.Paciente">
+        INSERT INTO paciente(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, sexo, peso, estatura, tallaInicial, email, telefono, password, fotografia,
+                             idDomicilio, idMedico)
+        VALUES (#{nombre}, #{apellidoPaterno}, #{apellidoMaterno}, #{fechaNacimiento,}, #{sexo}, #{peso}, #{estatura}, #{tallaInicial}, #{email}, #{telefono}, 
+                #{password}, #{fotografia}, #{idDomicilio}, #{idMedico})
     </insert>
     
-    <update id = "editar" parameterType = "map">
-        UPDATE paciente SET nombre = #{nombre}, apellidoPaterno = #{apellidoPaterno}, apellidoMaterno = #{apellidoMaterno}, password = #{password}
-        WHERE idUsuario = #{idUsuario}
+    <update id = "editarPaciente" parameterType = "map">
+        UPDATE paciente SET nombre = #{nombre}, apellidoPaterno = #{apellidoPaterno}, apellidoMaterno = #{apellidoMaterno}, fechaNacimiento = #{fechaNacimiento},
+                            sexo = #{sexo}, peso = #{peso}, estatura = #{estatura}, tallaInicial = #{tallaInicial}, email = #{email}, telefono = #{telefono}, 
+                            password = #{password}, fotografia = #{fotografia}, idDomicilio = #{idDomicilio}, idMedico = #{idMedico}
+        WHERE idPaciente = #{idPaciente}
     </update>
     
-    <delete id="eliminarUsuarioPorId" parameterType="int">
-        DELETE FROM paciente WHERE idUsuario = #{idUsuario}
+    <delete id="eliminarPaciente" parameterType="int">
+        DELETE FROM paciente WHERE idPaciente = #{idPaciente}
     </delete>
-    
 </mapper>
