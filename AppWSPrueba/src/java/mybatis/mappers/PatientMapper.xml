@@ -18,11 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id = "obtenerPorId" resultType = "pojo.Patient" parameterType = "int">
         SELECT * FROM paciente WHERE idPaciente = #{idPaciente}
     </select>
-    
-    <select id = "obtenerPorIdMedico" resultType = "modelo.pojo.Patient" parameterType = "int">
-        SELECT * FROM paciente WHERE idMedico = #{idMedico}
-    </select>
-    
+        
     <insert id = "registrarPaciente" parameterType = "modelo.pojo.Patient">
         INSERT INTO paciente(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, sexo, peso, estatura, tallaInicial, email, telefono, password, fotografia,
                              idDomicilio, idMedico)
