@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM paciente WHERE idPaciente = #{idPaciente}
     </select>
         
-    <insert id = "save" parameterType = "modelo.pojo.Patient">
+    <insert id = "save" parameterType = "pojo.Patient">
         INSERT INTO paciente(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, sexo, peso, estatura, tallaInicial, email, telefono, password, fotografia,
                              idDomicilio, idMedico)
         VALUES (#{nombre}, #{apellidoPaterno}, #{apellidoMaterno}, #{fechaNacimiento,}, #{sexo}, #{peso}, #{estatura}, #{tallaInicial}, #{email}, #{telefono}, 
