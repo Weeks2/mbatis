@@ -17,8 +17,8 @@ import org.apache.ibatis.session.SqlSession;
  * http://localhost:8084/APINutricion/api/paciente/obtenerPorMedico/2
  * 
  * GET /obtenerPorMedico/Id
- * POST /agregarPaciente
- * PUT /editarPaciente, 
+ * POST /agregarPaciente: y verificar que el correo no se repita
+ * PUT /editarPaciente, no se podra editar el correo
  * DELETE /eliminarPacientePorId
  */
 @Path("paciente")
