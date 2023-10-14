@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ws;
 
 import java.util.List;
@@ -19,7 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 
 /**
  *
- * @author andre
+ * http://localhost:8084/APINutricion/api/paciente/obtenerPorMedico/2
  */
 @Path("paciente")
 public class PacientesWS {
