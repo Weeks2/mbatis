@@ -15,6 +15,11 @@ import org.apache.ibatis.session.SqlSession;
 /**
  *
  * http://localhost:8084/APINutricion/api/paciente/obtenerPorMedico/2
+ * 
+ * GET /obtenerPorMedico/Id
+ * POST /agregarPaciente
+ * PUT /editarPaciente, 
+ * DELETE /eliminarPacientePorId
  */
 @Path("paciente")
 public class PacientesWS {

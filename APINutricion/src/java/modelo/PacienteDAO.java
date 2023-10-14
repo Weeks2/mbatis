@@ -2,7 +2,6 @@ package modelo;
 
 import java.util.HashMap;
 import java.util.List;
-import javax.ws.rs.PathParam;
 import modelo.pojo.Mensaje;
 import modelo.pojo.Paciente;
 import mybatis.MyBatisUtil;
@@ -17,7 +16,6 @@ public class PacienteDAO {
             try{
                 paciente = conexionDB.selectList("paciente.obtenerPorIdMedico", idMedico);
             }catch (Exception e){
-               e.printStackTrace();
             } finally{
                 conexionDB.close();
             }
