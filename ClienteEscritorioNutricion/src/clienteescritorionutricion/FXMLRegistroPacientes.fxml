@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="442.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clienteescritorionutricion.FXMLRegistroPacientesController">
+   <children>
+      <Pane prefHeight="442.0" prefWidth="822.0">
+         <children>
+            <Label layoutX="270.0" layoutY="14.0" text="Registro de Pacientes">
+               <font>
+                  <Font name="Cambria Bold" size="24.0" />
+               </font>
+            </Label>
+            <TextField layoutX="36.0" layoutY="140.0" promptText="Nombre" />
+            <TextField layoutX="36.0" layoutY="209.0" promptText="Apellido Paterno" />
+            <TextField layoutX="36.0" layoutY="276.0" promptText="Apellido Materno" />
+            <DatePicker layoutX="23.0" layoutY="344.0" promptText="Fecha de Nacimiento" />
+            <ComboBox layoutX="238.0" layoutY="140.0" prefWidth="150.0" promptText="Sexo" />
+            <TextField layoutX="239.0" layoutY="209.0" promptText="Peso en Kg" />
+            <TextField layoutX="239.0" layoutY="276.0" promptText="Estatura en Metros" />
+            <TextField layoutX="238.0" layoutY="344.0" promptText="Talla Inicial" />
+            <TextField layoutX="438.0" layoutY="140.0" promptText="Correo Electrónico" />
+            <TextField layoutX="438.0" layoutY="209.0" promptText="Telefóno" />
+            <PasswordField layoutX="438.0" layoutY="276.0" promptText="Contraseña" />
+            <ComboBox layoutX="437.0" layoutY="344.0" prefWidth="150.0" promptText="Domicilio" />
+            <Button layoutX="648.0" layoutY="209.0" mnemonicParsing="false" text="Elegir Imagen" />
+            <Button layoutX="675.0" layoutY="376.0" mnemonicParsing="false" text="Registrar" />
+            <ComboBox layoutX="632.0" layoutY="140.0" prefWidth="150.0" promptText="Médico" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
