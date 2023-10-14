@@ -56,9 +56,10 @@ public class PacientesWS {
     
     @POST
     @Path("agregarPaciente")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Paciente agregarPaciente(){
-     
-        return null;
+    public Paciente agregarPaciente(Paciente paciente){
+        
+        return paciente;
     }
 }
