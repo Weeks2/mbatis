@@ -46,7 +46,6 @@ public class PacientesWS {
             try{
                 paciente = conexionDB.selectList("paciente.obtenerPorIdMedico", idMedico);
             }catch (Exception e){
-               e.printStackTrace();
             } finally{
                 conexionDB.close();
             }
