@@ -37,7 +37,6 @@ public class AutenticacionDAO {
                 respuesta.setContenido("Error: Por el momento no hay conexion a la base de datos");
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return respuesta;
     }
