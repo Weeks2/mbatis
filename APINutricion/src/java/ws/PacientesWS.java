@@ -10,6 +10,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
+import modelo.PacienteDAO;
+import modelo.pojo.Mensaje;
 import modelo.pojo.Paciente;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
@@ -22,6 +24,20 @@ import org.apache.ibatis.session.SqlSession;
  * POST /agregarPaciente: y verificar que el correo no se repita
  * PUT /editarPaciente, no se podra editar el correo
  * DELETE /eliminarPacientePorId
+ * 
+ * {
+    "nombre": "Berenice",
+    "apellidoPaterno": "Carreon",
+    "apellidoMaterno": "Reyes",
+    "fechaNacimiento": "2002-09-30",
+    "sexo": "F",
+    "peso": 60.0,
+    "estatura": 1.5,
+    "tallaInicial": 50,
+    "email": "berenice23@gmail.com",
+    "telefono": "2245789545",
+    "password": "berenice23"
+}
  */
 @Path("paciente")
 public class PacientesWS {
@@ -58,8 +74,8 @@ public class PacientesWS {
     @Path("agregarPaciente")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Paciente agregarPaciente(Paciente paciente){
-        
-        return paciente;
+    public Mensaje agregarPaciente(Paciente paciente){
+        PacienteDAO dao = new PacienteDAO();
+        return dao.registrarPaciente(paciente);
     }
 }

@@ -23,27 +23,8 @@ public class PacienteDAO {
         return paciente;
     }
     
-    public Mensaje registrarPaciente(String nombre, String apellidoPaterno, String apellidoMaterno,
-                                      String fechaNacimiento, String sexo, float peso, float estatura,
-                                      int tallaInicial, String email, String telefono, String password,
-                                      byte[] fotografia, Integer idDomicilio, Integer idMedico){
-        
-        Paciente paciente = new Paciente();
-        paciente.setNombre(nombre);
-        paciente.setApellidoPaterno(apellidoPaterno);
-        paciente.setApellidoMaterno(apellidoMaterno);
-        paciente.setFechaNacimiento(fechaNacimiento);
-        paciente.setSexo(sexo);
-        paciente.setPeso(peso);
-        paciente.setEstatura(estatura);
-        paciente.setTallaInicial(tallaInicial);
-        paciente.setEmail(email);
-        paciente.setTelefono(telefono);
-        paciente.setPassword(password);
-        paciente.setFotografia(fotografia);
-        paciente.setIdDomicilio(idDomicilio);
-        paciente.setIdMedico(idMedico);
-        
+    public Mensaje registrarPaciente(Paciente paciente){
+         
         Mensaje msj = new Mensaje();
         SqlSession conexionDB = MyBatisUtil.getSesion();
         
@@ -72,33 +53,34 @@ public class PacienteDAO {
         return msj;
     }
     
-    public Mensaje editarPaciente(Integer idPaciente, String nombre, String apellidoPaterno, String apellidoMaterno,
-                                  String fechaNacimiento, String sexo, float peso, float estatura, int tallaInicial,
-                                  String telefono, String password, byte[] fotografia, Integer idDomicilio,
-                                  Integer idMedico){
+    private HashMap<String, Object> toparam(Paciente paciente) {
+    HashMap<String, Object> parametros = new HashMap<>();
+        parametros.put("idPaciente", paciente.getIdPaciente());
+        parametros.put("nombre", paciente.getNombre());
+        parametros.put("apellidoPaterno", paciente.getApellidoPaterno());
+        parametros.put("apellidoMaterno", paciente.getApellidoMaterno());
+        parametros.put("fechaNacimiento", paciente.getFechaNacimiento());
+        parametros.put("sexo", paciente.getSexo());
+        parametros.put("peso", paciente.getPeso());
+        parametros.put("estatura", paciente.getEstatura());
+        parametros.put("tallaInicial", paciente.getTallaInicial());
+        parametros.put("telefono", paciente.getTelefono());
+        parametros.put("password", paciente.getPassword());
+        parametros.put("fotografia", paciente.getFotografia());
+        parametros.put("idDomicilio", paciente.getIdDomicilio());
+        parametros.put("idMedico", paciente.getIdMedico());
+
+       return parametros;
+    }
+    
+    public Mensaje editarPaciente(Paciente paciente){
         
         Mensaje msj = new Mensaje();
-        HashMap<String, Object> parametros = new HashMap<>();
-        parametros.put("idPaciente", idPaciente);
-        parametros.put("nombre", nombre);
-        parametros.put("apellidoPaterno", apellidoPaterno);
-        parametros.put("apellidoMaterno", apellidoMaterno);
-        parametros.put("fechaNacimiento", fechaNacimiento);
-        parametros.put("sexo", sexo);
-        parametros.put("peso", peso);
-        parametros.put("estatura", estatura);
-        parametros.put("tallaInicial", tallaInicial);
-        parametros.put("telefono", telefono);
-        parametros.put("password", password);
-        parametros.put("fotografia", fotografia);
-        parametros.put("idDomicilio", idDomicilio);
-        parametros.put("idMedico", idMedico);
-
+        HashMap<String, Object> parametros = toparam(paciente);
         SqlSession conexionDB = MyBatisUtil.getSesion();
-
         if (conexionDB != null) {
             try {
-                Paciente usuaerioExistente = conexionDB.selectOne("paciente.obtenerPacientePorId", idPaciente);
+                Paciente usuaerioExistente = conexionDB.selectOne("paciente.obtenerPacientePorId", paciente);
                 if (usuaerioExistente != null) {
                     int numeroFilasAfectadas = conexionDB.update("paciente.editarPaciente", parametros);
                     conexionDB.commit();
