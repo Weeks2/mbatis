@@ -5,10 +5,19 @@
  */
 package validator;
 
+import modelo.pojo.Paciente;
+
 /**
  *
  * @author andre
  */
 public class PacienteValidator {
+
+    public boolean isValid(Paciente paciente) {
+        if(paciente.getNombre() == null) {
+            return false;
+        }
+        return paciente.getEmail() != null;
+    }
     
 }
