@@ -22,6 +22,7 @@ import java.util.List;
  * @author andre
  */
 public class PacienteDAO {
+    
     public static HashMap<String, Object> obtenerPacientesPorMedico(int idMedico){
         HashMap<String, Object> respuesta = new LinkedHashMap<>();
         String url = Constantes.URL_WS + "paciente/obtenerPorMedico/" + idMedico;

@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="947.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="clienteescritorionutricion.FXMLAdminPacientesController">
+<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="947.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clienteescritorionutricion.FXMLAdminPacientesController">
    <children>
       <Pane prefHeight="55.0" prefWidth="947.0" style="-fx-background-color: #26552d;">
          <children>
@@ -32,8 +31,17 @@
             <TableColumn fx:id="colTelefono" prefWidth="156.0" text="Telefono" />
         </columns>
       </TableView>
-      <Button layoutX="211.0" layoutY="77.0" mnemonicParsing="false" onAction="#btnIrFormularioRegistro" prefHeight="26.0" prefWidth="150.0" text="Registrar" />
-      <Button layoutX="418.0" layoutY="76.0" mnemonicParsing="false" onAction="#btnFormularioModificar" prefHeight="26.0" prefWidth="150.0" text="Modificar" />
-      <Button layoutX="637.0" layoutY="76.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Eliminar" />
+      <Button layoutX="246.0" layoutY="77.0" mnemonicParsing="false" onAction="#btnIrFormularioRegistro" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #4DCB4F;" text="Registrar">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="482.0" layoutY="76.0" mnemonicParsing="false" onAction="#btnFormularioModificar" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #39BAFF;" text="Modificar">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="731.0" layoutY="77.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #FF3939;" text="Eliminar">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>

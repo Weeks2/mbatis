@@ -95,18 +95,18 @@ public class FXMLInicioSesionController implements Initializable {
     private void irPantallaPrincipal(Medico medico) {
         try {
             Stage stagePrincipal = (Stage) tfNumeroPersonal.getScene().getWindow();
-            
+
             FXMLLoader loadVista = new FXMLLoader(getClass().getResource("FXMLHome.fxml"));
             Parent vista = loadVista.load();
-            
+
             FXMLHomeController controladorHome = loadVista.getController();
             controladorHome.inicializarHome(medico);
-            
+
             Scene scene = new Scene(vista);
             stagePrincipal.setScene(scene);
             stagePrincipal.setTitle("Página Principal");
             stagePrincipal.show();
-            
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
