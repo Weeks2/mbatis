@@ -93,7 +93,7 @@ public class PacientesWS {
     }
     
     @DELETE
-    @Path("editar")
+    @Path("eliminar")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje eliminarPaciente(Paciente paciente){
