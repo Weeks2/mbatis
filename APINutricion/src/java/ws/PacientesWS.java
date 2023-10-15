@@ -1,6 +1,7 @@
 package ws;
 
 import java.util.List;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -47,6 +48,9 @@ public class PacientesWS {
     
     @Context
     private UriInfo context;
+
+    @Inject
+    private PacienteDAO dao;
     
     @GET
     @Path("prueba")
@@ -59,7 +63,6 @@ public class PacientesWS {
     @Path("obtenerPorMedico/{idMedico}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Paciente> obtenerPacientePorIdMedico(@PathParam("idMedico") Integer idMedico){
-      PacienteDAO dao = new PacienteDAO();
       return dao.obtenerPacientePorIdMedico(idMedico);
     }
     
@@ -72,7 +75,6 @@ public class PacientesWS {
         if(mensaje.isError()) {
             return mensaje;
         }
-        PacienteDAO dao = new PacienteDAO();
         return dao.registrarPaciente(paciente);
     }
 }
