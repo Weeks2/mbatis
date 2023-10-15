@@ -25,6 +25,10 @@ public class PacienteValidator {
         if (isNullOrEmpty(paciente.getApellidoMaterno())) {
             response.setMensaje("Apellido Materno");
         }
+        
+        if (isNullOrEmpty(paciente.getFechaNacimiento())){
+            response.setMensaje("Fecha de Nacimiento");
+        }
 
         if(!response.getMensaje().equals("OK")) {
             response.setError(true);

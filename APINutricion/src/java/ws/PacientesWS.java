@@ -67,7 +67,7 @@ public class PacientesWS {
     }
     
     @POST
-    @Path("agregarPaciente")
+    @Path("agregar")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje agregarPaciente(Paciente paciente){
@@ -93,15 +93,10 @@ public class PacientesWS {
     }
     
     @DELETE
-    @Path("eliminar")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("eliminar/{idPaciente}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje eliminarPaciente(Paciente paciente){
-        Mensaje mensaje = PacienteValidator.isValid(paciente);
-        if(mensaje.isError()) {
-            return mensaje;
-        }
+    public Mensaje eliminarPaciente(@PathParam("idPaciente") Integer idPaciente){
         PacienteDAO dao = new PacienteDAO();
-        return dao.eliminarPaciente(paciente.getIdPaciente());
+        return dao.eliminarPaciente(idPaciente);
     }
 }
