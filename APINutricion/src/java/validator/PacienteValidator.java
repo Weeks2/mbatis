@@ -1,18 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package validator;
 
-import com.mysql.cj.protocol.Message;
 import modelo.pojo.Mensaje;
 import modelo.pojo.Paciente;
 
-/**
- *
- * @author andre
- */
 public class PacienteValidator {
     
     public static Mensaje isValid(Paciente paciente) {
@@ -35,7 +25,7 @@ public class PacienteValidator {
 
         if(!response.getMensaje().equals("OK")) {
             response.setError(true);
-            response.setMensaje(response.getMensaje() +  "no puede ser vacio");
+            response.setMensaje(response.getMensaje() +  " no puede ser vacio");
         }
 
         return response;
