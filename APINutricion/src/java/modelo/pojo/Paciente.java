@@ -16,7 +16,7 @@ public class Paciente {
     private byte[] fotografia;
     private Integer idDomicilio;
     private Integer idMedico;
-
+    private Integer idnuevo;
     public Paciente() {
     }
 

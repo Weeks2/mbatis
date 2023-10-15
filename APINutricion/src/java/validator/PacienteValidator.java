@@ -24,6 +24,11 @@ public class PacienteValidator {
             msj.setError(true);
            msj.setMensaje("Nombre debe tener valor");
         }
+        
+        if(paciente.getApellidoPaterno()== null || paciente.getApellidoPaterno().isEmpty()) {
+            msj.setError(true);
+           msj.setMensaje("Apellido Paterno debe tener valor");
+        }
 
         return msj;
     }
