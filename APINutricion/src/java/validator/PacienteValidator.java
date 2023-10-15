@@ -16,26 +16,29 @@ import modelo.pojo.Paciente;
 public class PacienteValidator {
     
     public static Mensaje isValid(Paciente paciente) {
-        Mensaje msj = new Mensaje();
-        msj.setError(false);
-        msj.setMensaje("OK, ");
-        
+
+        Mensaje response = new Mensaje();
+        response.setError(false);
+        response.setMensaje("OK");
+
         if (paciente.getNombre() == null || paciente.getNombre().isEmpty()) {
-            msj.setError(true);
-            msj.setMensaje("Nombre debe tener valor");
+            response.setMensaje("Nombre");
         }
         
         if (paciente.getApellidoPaterno() == null || paciente.getApellidoPaterno().isEmpty()) {
-            msj.setError(true);
-            msj.setMensaje("Apellido Paterno debe tener valor");
+            response.setMensaje("Apellido Paterno");
         }
         
         if (paciente.getApellidoMaterno() == null || paciente.getApellidoMaterno().isEmpty()) {
-            msj.setError(true);
-            msj.setMensaje("Apellido Materno debe tener valor");
+            response.setMensaje("Apellido Materno");
         }
-        
-        return msj;
+
+        if(!response.getMensaje().equals("OK")) {
+            response.setError(true);
+            response.setMensaje(response.getMensaje() +  "no puede ser vacio");
+        }
+
+        return response;
     }
     
 }
