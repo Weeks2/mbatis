@@ -15,6 +15,7 @@ import modelo.pojo.Mensaje;
 import modelo.pojo.Paciente;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
+import validator.PacienteValidator;
 
 /**
  *
@@ -67,6 +68,10 @@ public class PacientesWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje agregarPaciente(Paciente paciente){
+        Mensaje mensaje = PacienteValidator.isValid(paciente);
+        if(mensaje.isError()) {
+            return mensaje;
+        }
         PacienteDAO dao = new PacienteDAO();
         return dao.registrarPaciente(paciente);
     }

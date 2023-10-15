@@ -5,6 +5,8 @@
  */
 package validator;
 
+import com.mysql.cj.protocol.Message;
+import modelo.pojo.Mensaje;
 import modelo.pojo.Paciente;
 
 /**
@@ -13,11 +15,17 @@ import modelo.pojo.Paciente;
  */
 public class PacienteValidator {
 
-    public boolean isValid(Paciente paciente) {
+    public static Mensaje isValid(Paciente paciente) {
+        Mensaje msj = new Mensaje();
+        msj.setError(false);
+        msj.setMensaje("OK, ");
+
         if(paciente.getNombre() == null) {
-            return false;
+            msj.setError(true);
+           msj.setMensaje("Nombre debe tener valor");
         }
-        return paciente.getEmail() != null;
+
+        return msj;
     }
     
 }
