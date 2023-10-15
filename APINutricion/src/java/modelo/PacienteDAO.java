@@ -82,17 +82,21 @@ public class PacienteDAO {
 
         if (conn != null) {
             try {
-                Paciente pacienteFound = conn.selectOne("paciente.obtenerPacientePorId", paciente.getIdPaciente());
-                if (pacienteFound != null) {
-                    int afected = conn.update("paciente.editarPaciente", parametros);
+                if(paciente.getIdPaciente() == 0) {
+                    response.setMensaje("ID necesario para actualizar");
+                }
+                Paciente found = conn.selectOne("paciente.obtenerPacientePorId", paciente.getIdPaciente());
+                if (found != null) {
+                    int count = conn.update("paciente.editarPaciente", parametros);
                     conn.commit();
-                    if (afected > 0) {
+                    if (count > 0) {
                         response.setMensaje("Paciente actualizado con éxito.");
                     } else {
                         response.setMensaje("Lo sentimos, no se pudo actualizar la información del Paciente.");
                     }
                 }
             } catch (Exception e) {
+                response.setError(true);
                 response.setMensaje("Error: " + e.getMessage());
             } finally {
                 conn.close();
