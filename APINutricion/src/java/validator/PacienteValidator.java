@@ -20,7 +20,7 @@ public class PacienteValidator {
         msj.setError(false);
         msj.setMensaje("OK, ");
 
-        if(paciente.getNombre() == null) {
+        if(paciente.getNombre() == null || paciente.getNombre().isEmpty()) {
             msj.setError(true);
            msj.setMensaje("Nombre debe tener valor");
         }
