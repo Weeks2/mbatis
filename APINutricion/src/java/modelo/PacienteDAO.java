@@ -34,7 +34,7 @@ public class PacienteDAO {
                 conexionDB.commit();
                 if (numeroFilasAfectadas > 0) {
                     msj.setError(false);
-                    msj.setMensaje("Información del Paciente registrado con éxito");
+                    msj.setMensaje("OK, " +numeroFilasAfectadas + ","+paciente.getNombre());
                 } else {
                     msj.setError(true);
                     msj.setMensaje("Lo sentimos, no se pudo registrar la información del Paciente.");

@@ -20,24 +20,6 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(Integer idPaciente, String nombre, String apellidoPaterno, String apellidoMaterno, String fechaNacimiento, String sexo, float peso, float estatura, int tallaInicial, String email, String telefono, String password, byte[] fotografia, Integer idDomicilio, Integer idMedico) {
-        this.idPaciente = idPaciente;
-        this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-        this.fechaNacimiento = fechaNacimiento;
-        this.sexo = sexo;
-        this.peso = peso;
-        this.estatura = estatura;
-        this.tallaInicial = tallaInicial;
-        this.email = email;
-        this.telefono = telefono;
-        this.password = password;
-        this.fotografia = fotografia;
-        this.idDomicilio = idDomicilio;
-        this.idMedico = idMedico;
-    }
-
     public Integer getIdPaciente() {
         return idPaciente;
     }

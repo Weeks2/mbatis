@@ -25,7 +25,8 @@ import org.apache.ibatis.session.SqlSession;
  * PUT /editarPaciente, no se podra editar el correo
  * DELETE /eliminarPacientePorId
  * 
- * {
+{
+    "idPaciente": 4,
     "nombre": "Berenice",
     "apellidoPaterno": "Carreon",
     "apellidoMaterno": "Reyes",
@@ -36,7 +37,8 @@ import org.apache.ibatis.session.SqlSession;
     "tallaInicial": 50,
     "email": "berenice23@gmail.com",
     "telefono": "2245789545",
-    "password": "berenice23"
+    "password": "berenice23",
+    "idMedico": 2
 }
  */
 @Path("paciente")
@@ -56,18 +58,8 @@ public class PacientesWS {
     @Path("obtenerPorMedico/{idMedico}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Paciente> obtenerPacientePorIdMedico(@PathParam("idMedico") Integer idMedico){
-        List<Paciente> paciente = null;
-        SqlSession conexionDB = MyBatisUtil.getSesion();
-        
-        if(conexionDB != null){
-            try{
-                paciente = conexionDB.selectList("paciente.obtenerPorIdMedico", idMedico);
-            }catch (Exception e){
-            } finally{
-                conexionDB.close();
-            }
-        }
-        return paciente;
+      PacienteDAO dao = new PacienteDAO();
+      return dao.obtenerPacientePorIdMedico(idMedico);
     }
     
     @POST
