@@ -62,6 +62,7 @@ public class PacienteDAO {
         parametros.put("fechaNacimiento", paciente.getFechaNacimiento());
         parametros.put("sexo", paciente.getSexo());
         parametros.put("peso", paciente.getPeso());
+        parametros.put("email",paciente.getEmail());
         parametros.put("estatura", paciente.getEstatura());
         parametros.put("tallaInicial", paciente.getTallaInicial());
         parametros.put("telefono", paciente.getTelefono());
