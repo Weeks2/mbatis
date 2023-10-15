@@ -14,22 +14,25 @@ import modelo.pojo.Paciente;
  * @author andre
  */
 public class PacienteValidator {
-    
+
+    private static boolean isNullOrEmpty (String val) {
+       return val == null || val.isEmpty();
+    }
     public static Mensaje isValid(Paciente paciente) {
 
         Mensaje response = new Mensaje();
         response.setError(false);
         response.setMensaje("OK");
 
-        if (paciente.getNombre() == null || paciente.getNombre().isEmpty()) {
+        if (isNullOrEmpty(paciente.getNombre())) {
             response.setMensaje("Nombre");
         }
         
-        if (paciente.getApellidoPaterno() == null || paciente.getApellidoPaterno().isEmpty()) {
+        if (isNullOrEmpty(paciente.getApellidoPaterno())) {
             response.setMensaje("Apellido Paterno");
         }
         
-        if (paciente.getApellidoMaterno() == null || paciente.getApellidoMaterno().isEmpty()) {
+        if (isNullOrEmpty(paciente.getApellidoMaterno())) {
             response.setMensaje("Apellido Materno");
         }
 
