@@ -78,6 +78,7 @@ public class PacienteDAO {
         Mensaje msj = new Mensaje();
         HashMap<String, Object> parametros = toparam(paciente);
         SqlSession conexionDB = MyBatisUtil.getSesion();
+        msj.setMensaje("OK");
         if (conexionDB != null) {
             try {
                 Paciente usuaerioExistente = conexionDB.selectOne("paciente.obtenerPacientePorId", paciente);
