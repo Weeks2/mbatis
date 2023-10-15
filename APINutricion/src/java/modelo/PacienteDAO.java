@@ -75,36 +75,33 @@ public class PacienteDAO {
     
     public Mensaje editarPaciente(Paciente paciente){
         
-        Mensaje msj = new Mensaje();
+        Mensaje response = new Mensaje();
         HashMap<String, Object> parametros = toparam(paciente);
-        SqlSession conexionDB = MyBatisUtil.getSesion();
-        msj.setMensaje("OK");
-        if (conexionDB != null) {
+        SqlSession conn = MyBatisUtil.getSesion();
+        response.setMensaje("OK");
+
+        if (conn != null) {
             try {
-                Paciente usuaerioExistente = conexionDB.selectOne("paciente.obtenerPacientePorId", paciente);
-                if (usuaerioExistente != null) {
-                    int numeroFilasAfectadas = conexionDB.update("paciente.editarPaciente", parametros);
-                    conexionDB.commit();
-                    if (numeroFilasAfectadas > 0) {
-                        msj.setError(false);
-                        msj.setMensaje("Paciente actualizado con éxito.");
+                Paciente pacienteFound = conn.selectOne("paciente.obtenerPacientePorId", paciente.getIdPaciente());
+                if (pacienteFound != null) {
+                    int afected = conn.update("paciente.editarPaciente", parametros);
+                    conn.commit();
+                    if (afected > 0) {
+                        response.setMensaje("Paciente actualizado con éxito.");
                     } else {
-                        msj.setError(true);
-                        msj.setMensaje("Lo sentimos, no se pudo actualizar la información del Paciente.");
+                        response.setMensaje("Lo sentimos, no se pudo actualizar la información del Paciente.");
                     }
                 }
             } catch (Exception e) {
-                msj.setError(true);
-                msj.setMensaje("Error: " + e.getMessage());
+                response.setMensaje("Error: " + e.getMessage());
             } finally {
-                conexionDB.close();
+                conn.close();
             }
         } else {
-            msj.setError(true);
-            msj.setMensaje("Por el momento no hay conexión con la base de datos.");
+            response.setMensaje("Por el momento no hay conexión con la base de datos.");
         }
 
-        return msj;
+        return response;
     }
     
     public Mensaje eliminarPaciente(Integer idPaciente) {
