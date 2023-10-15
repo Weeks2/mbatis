@@ -2,6 +2,7 @@ package ws;
 
 import java.util.List;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.POST;
@@ -91,5 +92,16 @@ public class PacientesWS {
         return dao.editarPaciente(paciente);
     }
     
-    
+    @DELETE
+    @Path("editar")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Mensaje eliminarPaciente(Paciente paciente){
+        Mensaje mensaje = PacienteValidator.isValid(paciente);
+        if(mensaje.isError()) {
+            return mensaje;
+        }
+        PacienteDAO dao = new PacienteDAO();
+        return dao.eliminarPaciente(paciente.getIdPaciente());
+    }
 }

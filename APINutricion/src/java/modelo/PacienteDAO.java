@@ -106,7 +106,7 @@ public class PacienteDAO {
         return msj;
     }
     
-    public Mensaje eliminarUsuario(Integer idPaciente) {
+    public Mensaje eliminarPaciente(Integer idPaciente) {
 
         Mensaje msj = new Mensaje();
         SqlSession conexionDB = MyBatisUtil.getSesion();
