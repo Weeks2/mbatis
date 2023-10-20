@@ -14,16 +14,37 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import java.net.URL; 
 /**
  *
  * @author andre
  */
 public class ConexionHTTP {
 
+    
+       public static CodigoHTTP request(String method,String url ) {
+
+        CodigoHTTP respuesta = new CodigoHTTP();
+        try {
+            URL urlServicio = new URL(url);
+            HttpURLConnection conexionHttp = (HttpURLConnection) urlServicio.openConnection();
+            conexionHttp.setRequestMethod(method);
+            int codigoRespuesta = conexionHttp.getResponseCode();
+            respuesta.setCodigoRespuesta(codigoRespuesta);
+            if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
+                respuesta.setContenido(convertirContenido(conexionHttp.getInputStream()));
+            } else {
+                respuesta.setContenido("CODE ERROR: " + codigoRespuesta);
+            }
+        } catch (MalformedURLException ex) {
+            respuesta.setCodigoRespuesta(Constantes.ERROR_URL);
+            respuesta.setContenido("Error: " + ex.getMessage());
+        } catch (IOException iox) {
+            respuesta.setCodigoRespuesta(Constantes.ERROR_PETICION);
+            respuesta.setContenido("Error: " + iox.getMessage());
+        }
+        return respuesta;
+    }
     public static CodigoHTTP peticionGET(String url) {
 
         CodigoHTTP respuesta = new CodigoHTTP();
@@ -123,7 +144,7 @@ public class ConexionHTTP {
             URL urlServicio = new URL(url);
             HttpURLConnection conexionHttp = (HttpURLConnection) urlServicio.openConnection();
             conexionHttp.setRequestMethod("DELETE");
-            conexionHttp.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conexionHttp.setRequestProperty("Content-Type", "application/json");
             conexionHttp.setDoOutput(true);
             //Escribir datos en el cuerpo de la peticion
             OutputStream os = conexionHttp.getOutputStream(); //accesso para enviar datos
