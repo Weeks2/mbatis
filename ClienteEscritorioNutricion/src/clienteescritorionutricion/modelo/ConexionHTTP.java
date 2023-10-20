@@ -30,8 +30,47 @@ public class ConexionHTTP {
           ObjectMapper objectMapper = new ObjectMapper();
           return objectMapper.writeValueAsString(paciente);
        }
-    
         */
+    
+     private static String createJson(Paciente paciente) {
+      return "";
+     }
+    
+    public static CodigoHTTP postRequest(String url,Paciente paciente) {
+   
+    CodigoHTTP respuesta = new CodigoHTTP();
+    String jsonBody = createJson(paciente);
+    try {
+        URL urlServicio = new URL(url);
+        HttpURLConnection conexionHttp = (HttpURLConnection) urlServicio.openConnection();
+        conexionHttp.setRequestMethod("POST");
+        conexionHttp.setRequestProperty("Content-Type", "application/json");
+        conexionHttp.setDoOutput(true);
+
+        // Escribir el cuerpo de la solicitud
+        try (OutputStream os = conexionHttp.getOutputStream()) {
+            byte[] input = jsonBody.getBytes("UTF-8");
+            os.write(input, 0, input.length);
+        }
+
+        int codigoRespuesta = conexionHttp.getResponseCode();
+        respuesta.setCodigoRespuesta(codigoRespuesta);
+        
+        if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
+            respuesta.setContenido(convertirContenido(conexionHttp.getInputStream()));
+        } else {
+            respuesta.setContenido("CODE ERROR: " + codigoRespuesta);
+        }
+    } catch (MalformedURLException ex) {
+        respuesta.setCodigoRespuesta(Constantes.ERROR_URL);
+        respuesta.setContenido("Error: " + ex.getMessage());
+    } catch (IOException iox) {
+        respuesta.setCodigoRespuesta(Constantes.ERROR_PETICION);
+        respuesta.setContenido("Error: " + iox.getMessage());
+    }
+    return respuesta;
+}
+
     
        
        public static CodigoHTTP request(String method,String url ) {
