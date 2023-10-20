@@ -34,7 +34,8 @@ import javafx.stage.Stage;
  * @author andre
  */
 public class FXMLAdminPacientesController implements Initializable {
-
+    
+    private Paciente paciente;
     private int idMedico;
     private ObservableList<Paciente> pacientesMedico;
 
@@ -69,6 +70,7 @@ public class FXMLAdminPacientesController implements Initializable {
 
     @FXML
     private void btnIrFormularioRegistro(ActionEvent event) {
+        irFormularioPaciente(null, idMedico);
     }
 
     @FXML
@@ -105,6 +107,25 @@ public class FXMLAdminPacientesController implements Initializable {
             tvPacientes.setItems(pacientesMedico);
         } else {
             Utilidades.mostrarAlertaSimple("Error", (String) respuesta.get("mensaje"), Alert.AlertType.ERROR);
+        }
+    }
+    
+    private void irFormularioPaciente(Paciente paciente, int idMedico){
+        try {
+            FXMLLoader vistaLoad = new FXMLLoader(getClass().getResource("FXMLRegistroPacientes.fxml"));
+            Parent vista = vistaLoad.load();
+
+            FXMLRegistroPacientesController controlador = vistaLoad.getController();
+            controlador.inicializarInformacion(paciente, idMedico);
+
+            Stage stage = new Stage();
+
+            Scene escenaAdmin = new Scene(vista);
+            stage.setScene(escenaAdmin);
+            stage.setTitle("Reguistro de Pacientes");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (Exception e) {
         }
     }
 

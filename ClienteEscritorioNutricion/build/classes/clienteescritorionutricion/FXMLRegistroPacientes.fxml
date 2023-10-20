@@ -5,35 +5,50 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="442.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clienteescritorionutricion.FXMLRegistroPacientesController">
+<AnchorPane id="AnchorPane" prefHeight="442.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clienteescritorionutricion.FXMLRegistroPacientesController">
    <children>
-      <Pane prefHeight="442.0" prefWidth="822.0">
+      <Pane fx:id="btnCancelar" prefHeight="442.0" prefWidth="729.0">
          <children>
-            <Label layoutX="270.0" layoutY="14.0" text="Registro de Pacientes">
+            <Label layoutX="246.0" layoutY="26.0" text="Registro de Pacientes">
                <font>
                   <Font name="Cambria Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="36.0" layoutY="140.0" promptText="Nombre" />
-            <TextField layoutX="36.0" layoutY="209.0" promptText="Apellido Paterno" />
-            <TextField layoutX="36.0" layoutY="276.0" promptText="Apellido Materno" />
-            <DatePicker layoutX="23.0" layoutY="344.0" promptText="Fecha de Nacimiento" />
-            <ComboBox layoutX="238.0" layoutY="140.0" prefWidth="150.0" promptText="Sexo" />
-            <TextField layoutX="239.0" layoutY="209.0" promptText="Peso en Kg" />
-            <TextField layoutX="239.0" layoutY="276.0" promptText="Estatura en Metros" />
-            <TextField layoutX="238.0" layoutY="344.0" promptText="Talla Inicial" />
-            <TextField layoutX="438.0" layoutY="140.0" promptText="Correo Electrónico" />
-            <TextField layoutX="438.0" layoutY="209.0" promptText="Telefóno" />
-            <PasswordField layoutX="438.0" layoutY="276.0" promptText="Contraseña" />
-            <ComboBox layoutX="437.0" layoutY="344.0" prefWidth="150.0" promptText="Domicilio" />
-            <Button layoutX="648.0" layoutY="209.0" mnemonicParsing="false" text="Elegir Imagen" />
-            <Button layoutX="675.0" layoutY="376.0" mnemonicParsing="false" text="Registrar" />
-            <ComboBox layoutX="632.0" layoutY="140.0" prefWidth="150.0" promptText="Médico" />
+            <TextField fx:id="tfNombre" layoutX="36.0" layoutY="140.0" promptText="Nombre" />
+            <TextField fx:id="tfApellidoPaterno" layoutX="36.0" layoutY="209.0" promptText="Apellido Paterno" />
+            <TextField fx:id="tfApellidoMaterno" layoutX="36.0" layoutY="276.0" promptText="Apellido Materno" />
+            <DatePicker fx:id="dpFechaNacimiento" layoutX="23.0" layoutY="344.0" promptText="Fecha de Nacimiento" />
+            <TextField fx:id="tfPeso" layoutX="270.0" layoutY="209.0" promptText="Peso en Kg" />
+            <TextField fx:id="tfEstatura" layoutX="270.0" layoutY="276.0" promptText="Estatura en Metros" />
+            <TextField fx:id="tfTallaInicial" layoutX="270.0" layoutY="343.0" promptText="Talla Inicial" />
+            <TextField fx:id="tfEmail" layoutX="491.0" layoutY="140.0" promptText="Correo Electrónico" />
+            <TextField fx:id="tfTelefono" layoutX="491.0" layoutY="209.0" promptText="Telefóno" />
+            <PasswordField fx:id="pfPassword" layoutX="491.0" layoutY="276.0" promptText="Contraseña" />
+            <ComboBox layoutX="490.0" layoutY="344.0" prefWidth="150.0" promptText="Domicilio" />
+            <Button layoutX="64.0" layoutY="388.0" mnemonicParsing="false" onAction="#btnRegistrarPaciente" text="Registrar" />
+            <RadioButton fx:id="rbFemenino" layoutX="233.0" layoutY="144.0" mnemonicParsing="false" text="Femenino">
+               <toggleGroup>
+                  <ToggleGroup fx:id="tgSexo" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="rbMasculino" layoutX="364.0" layoutY="144.0" mnemonicParsing="false" text="Masculino" toggleGroup="$tgSexo" />
+            <Label fx:id="lbErrorNombre" layoutX="96.0" layoutY="165.0" textFill="RED" />
+            <Label fx:id="lbErrorApellidoPaterno" layoutX="94.0" layoutY="232.0" textFill="RED" />
+            <Label fx:id="lbErrorApellidoMaterno" layoutX="94.0" layoutY="305.0" textFill="RED" />
+            <Label fx:id="lbErrorFechaNacimiento" layoutX="94.0" layoutY="368.0" textFill="RED" />
+            <Label fx:id="lbErrorPeso" layoutX="302.0" layoutY="233.0" textFill="RED" />
+            <Label fx:id="lbErrorEstatura" layoutX="302.0" layoutY="305.0" textFill="RED" />
+            <Label fx:id="lbErrorTalla" layoutX="299.0" layoutY="368.0" textFill="RED" />
+            <Label fx:id="lbErrorEmail" layoutX="498.0" layoutY="161.0" textFill="RED" />
+            <Label fx:id="lbErrorTelefono" layoutX="503.0" layoutY="230.0" textFill="RED" />
+            <Label fx:id="lbErrorPassword" layoutX="498.0" layoutY="305.0" textFill="RED" />
+            <Button layoutX="534.0" layoutY="388.0" mnemonicParsing="false" onAction="#btnCancelar" text="Cancelar" />
          </children>
       </Pane>
    </children>

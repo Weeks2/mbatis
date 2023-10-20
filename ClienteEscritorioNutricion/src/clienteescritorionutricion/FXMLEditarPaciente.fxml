@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="394.0" prefWidth="714.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="clienteescritorionutricion.FXMLEditarPacienteController">
+<AnchorPane id="AnchorPane" prefHeight="394.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clienteescritorionutricion.FXMLEditarPacienteController">
    <children>
       <Pane prefHeight="59.0" prefWidth="714.0" style="-fx-background-color: #26552d;">
          <children>
@@ -66,5 +65,11 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <Label fx:id="lbErrorNombre" layoutX="117.0" layoutY="130.0" textFill="RED" />
+      <Label fx:id="lbErrorApellidoPaterno" layoutX="344.0" layoutY="130.0" textFill="RED" />
+      <Label fx:id="lbErrorApellidoMaterno" layoutX="579.0" layoutY="130.0" textFill="RED" />
+      <Label fx:id="lbErrorFechaNacimiento" layoutX="117.0" layoutY="259.0" textFill="RED" />
+      <Label fx:id="lbErrorEmail" layoutX="343.0" layoutY="259.0" textFill="RED" />
+      <Label fx:id="lbErrorTelefono" layoutX="579.0" layoutY="259.0" textFill="RED" />
    </children>
 </AnchorPane>

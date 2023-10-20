@@ -7,6 +7,7 @@ package clienteescritorionutricion.modelo.dao;
 
 import clienteescritorionutricion.modelo.ConexionHTTP;
 import clienteescritorionutricion.modelo.pojo.CodigoHTTP;
+import clienteescritorionutricion.modelo.pojo.Mensaje;
 import clienteescritorionutricion.modelo.pojo.Paciente;
 import clienteescritorionutricion.utils.Constantes;
 import com.google.gson.Gson;
@@ -36,8 +37,31 @@ public class PacienteDAO {
             respuesta.put("pacientes", pacientes);
         }else{
             respuesta.put("error", true);
-            respuesta.put("mensaje", "hubo un error al obtener la información de los pacientes, " + "porfavor intentelo más tarde.");
+            respuesta.put("mensaje", "Hubo un error al obtener la información de los pacientes, " + "porfavor intentelo más tarde.");
         }
         return respuesta;
+    }
+    
+    public static Mensaje registrarPaciente(Paciente paciente){
+        Mensaje msj = new Mensaje();
+        String url = Constantes.URL_WS + "paciente/registrar";
+        String parametros = String.format("nombre=%s&" + "apellidoPaterno=%s&" + "apellidoMaterno=%s&" + "fechaNacimiento=%s&sexo=%s&"
+                                          + "peso=%s&" + "estatura=%s&" + "tallaInicial=%s&" + "email=%s&"
+                                          + "telefono=%s&" + "password=%s&" + "idMedico=%s&", 
+                                          paciente.getNombre(), paciente.getApellidoPaterno(), paciente.getApellidoMaterno(),
+                                          paciente.getFechaNacimiento(), paciente.getSexo(), paciente.getPeso(),
+                                          paciente.getEstatura(), paciente.getTallaInicial(), paciente.getEmail(),
+                                          paciente.getTelefono(), paciente.getPassword(), paciente.getIdMedico());
+        
+        CodigoHTTP respuestaWS = ConexionHTTP.peticionPOST(url, parametros);
+        
+        if (respuestaWS.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            Gson gson = new Gson();
+            msj = gson.fromJson(respuestaWS.getContenido(), Mensaje.class);
+        } else {
+            msj.setError(true);
+            msj.setMensaje("Error en la petición para el registro del Paciente.");
+        }
+        return msj;
     }
 }

@@ -82,6 +82,72 @@ public class ConexionHTTP {
         }
         return respuesta;
     }
+    
+    public static CodigoHTTP peticionPUT(String url, String parametros){
+        CodigoHTTP respuesta = new CodigoHTTP();
+        
+        try {
+            URL urlServicio = new URL(url);
+            HttpURLConnection conexionHttp = (HttpURLConnection) urlServicio.openConnection();
+            conexionHttp.setRequestMethod("PUT");
+            conexionHttp.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conexionHttp.setDoOutput(true);
+            //Escribir datos en el cuerpo de la peticion
+            OutputStream os = conexionHttp.getOutputStream(); //accesso para enviar datos
+            os.write(parametros.getBytes());
+            os.flush();
+            os.close();
+            //Termina la escritura
+            int codigoRespuesta = conexionHttp.getResponseCode();
+            respuesta.setCodigoRespuesta(codigoRespuesta);
+            
+            if(codigoRespuesta == HttpURLConnection.HTTP_OK){
+                respuesta.setContenido(convertirContenido(conexionHttp.getInputStream()));
+            }else{
+                respuesta.setContenido("CODE ERROR: " + codigoRespuesta);
+            }
+        } catch (MalformedURLException ex) {
+            respuesta.setCodigoRespuesta(Constantes.ERROR_URL);
+            respuesta.setContenido("Error: " + ex.getMessage());
+        } catch (IOException iox) {
+            respuesta.setCodigoRespuesta(Constantes.ERROR_PETICION);
+            respuesta.setContenido("Error: " + iox.getMessage());
+        }
+        return respuesta;
+    }
+    
+    public static CodigoHTTP peticionDELETE(String url, String parametros){
+        CodigoHTTP respuesta = new CodigoHTTP();
+        
+        try {
+            URL urlServicio = new URL(url);
+            HttpURLConnection conexionHttp = (HttpURLConnection) urlServicio.openConnection();
+            conexionHttp.setRequestMethod("DELETE");
+            conexionHttp.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conexionHttp.setDoOutput(true);
+            //Escribir datos en el cuerpo de la peticion
+            OutputStream os = conexionHttp.getOutputStream(); //accesso para enviar datos
+            os.write(parametros.getBytes());
+            os.flush();
+            os.close();
+            //Termina la escritura
+            int codigoRespuesta = conexionHttp.getResponseCode();
+            respuesta.setCodigoRespuesta(codigoRespuesta);
+            
+            if(codigoRespuesta == HttpURLConnection.HTTP_OK){
+                respuesta.setContenido(convertirContenido(conexionHttp.getInputStream()));
+            }else{
+                respuesta.setContenido("CODE ERROR: " + codigoRespuesta);
+            }
+        } catch (MalformedURLException ex) {
+            respuesta.setCodigoRespuesta(Constantes.ERROR_URL);
+            respuesta.setContenido("Error: " + ex.getMessage());
+        } catch (IOException iox) {
+            respuesta.setCodigoRespuesta(Constantes.ERROR_PETICION);
+            respuesta.setContenido("Error: " + iox.getMessage());
+        }
+        return respuesta;
+    }
 
     private static String convertirContenido(InputStream contenido) throws IOException {
         InputStreamReader inputLectura = new InputStreamReader(contenido);

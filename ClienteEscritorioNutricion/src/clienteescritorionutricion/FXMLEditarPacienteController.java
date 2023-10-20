@@ -53,6 +53,7 @@ public class FXMLEditarPacienteController implements Initializable {
         tfApellidoPaterno.setText(infoPaciente.getApellidoPaterno());
         tfApellidoMaterno.setText(infoPaciente.getApellidoMaterno());
         dpFechaNacimiento.setValue(fechaNacimientoPaciente);
+        tfEmail.setDisable(true);
         tfEmail.setText(infoPaciente.getEmail());
         tfTelefono.setText(infoPaciente.getTelefono());
     }
