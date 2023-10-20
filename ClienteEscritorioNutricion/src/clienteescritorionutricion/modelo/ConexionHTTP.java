@@ -6,6 +6,7 @@
 package clienteescritorionutricion.modelo;
 
 import clienteescritorionutricion.modelo.pojo.CodigoHTTP;
+import clienteescritorionutricion.modelo.pojo.Paciente;
 import clienteescritorionutricion.utils.Constantes;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +22,18 @@ import java.net.URL;
  */
 public class ConexionHTTP {
 
+       /**
+        * 
+        * @param paciente
+        * @return 
+        * private static String toJson(Paciente paciente) {
+          ObjectMapper objectMapper = new ObjectMapper();
+          return objectMapper.writeValueAsString(paciente);
+       }
     
+        */
+    
+       
        public static CodigoHTTP request(String method,String url ) {
 
         CodigoHTTP respuesta = new CodigoHTTP();
