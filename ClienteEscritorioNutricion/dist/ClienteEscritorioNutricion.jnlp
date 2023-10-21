@@ -8,8 +8,9 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="ClienteEscritorioNutricion.jar" size="321379" download="eager" />
+    <jar href="ClienteEscritorioNutricion.jar" size="323956" download="eager" />
     <jar href="lib\gson-2.9.1.jar" size="265030" download="eager" />
+    <jar href="lib\jackson-databind-2.15.3-javadoc.jar" size="6015648" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="ClienteEscritorioNutricion" >
     <param name="requiredFXVersion" value="8.0+"/>
