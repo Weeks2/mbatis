@@ -21,25 +21,12 @@ import java.net.URL;
  * @author andre
  */
 public class ConexionHTTP {
-
-       /**
-        * 
-        * @param paciente
-        * @return 
-        * private static String toJson(Paciente paciente) {
-          ObjectMapper objectMapper = new ObjectMapper();
-          return objectMapper.writeValueAsString(paciente);
-       }
-        */
     
-     private static String createJson(Paciente paciente) {
-      return "";
-     }
-    
+  
     public static CodigoHTTP postRequest(String url,Paciente paciente) {
    
     CodigoHTTP respuesta = new CodigoHTTP();
-    String jsonBody = createJson(paciente);
+    String jsonBody = JsonUtility.createJson(paciente);
     try {
         URL urlServicio = new URL(url);
         HttpURLConnection conexionHttp = (HttpURLConnection) urlServicio.openConnection();
