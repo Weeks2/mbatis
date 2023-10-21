@@ -1,5 +1,6 @@
 package clienteescritorionutricion.modelo;
 import clienteescritorionutricion.modelo.pojo.Paciente;
+import com.google.gson.Gson;
 
 public class JsonUtility {
     
@@ -17,4 +18,9 @@ public class JsonUtility {
 private static String addChild(String key, String val, boolean comma) {
     return String.format("\"%s\":\"%s\"%s", key, val, comma ? "\",":"");
 }
+
+private static String toJson() {
+    Gson gson = new Gson();
+    return gson.toJson(new Paciente());
+ }
 }
