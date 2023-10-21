@@ -7,6 +7,7 @@ public class JsonUtility {
     public static String createJson(Paciente paciente) {
         StringBuilder jsonBuilder = new StringBuilder();
         jsonBuilder.append("{")
+                .append(addChild("idPaciente", paciente.getIdPaciente() + "", true))
                 .append(addChild("nombre", paciente.getNombre(), true))
                 .append(addChild("apellidoPaterno", paciente.getApellidoPaterno(), true))
                 .append(addChild("apellidoMaterno", paciente.getApellidoMaterno(), true))
