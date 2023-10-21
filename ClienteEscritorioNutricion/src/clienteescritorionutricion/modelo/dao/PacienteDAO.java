@@ -56,4 +56,19 @@ public class PacienteDAO {
         }
         return msj;
     }
+    
+    
+    public static Mensaje updatePaciente(Paciente paciente){
+        Mensaje msj = new Mensaje();        
+        CodigoHTTP respuestaWS = ConexionHTTP.putRequest(Constantes.URL_WS + "paciente/editar", paciente);
+        
+        if (respuestaWS.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            Gson gson = new Gson();
+            msj = gson.fromJson(respuestaWS.getContenido(), Mensaje.class);
+        } else {
+            msj.setError(true);
+            msj.setMensaje("Error en la petición para el editar del Paciente.");
+        }
+        return msj;
+    }
 }
