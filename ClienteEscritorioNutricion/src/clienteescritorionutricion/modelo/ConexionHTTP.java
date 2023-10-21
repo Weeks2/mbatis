@@ -15,13 +15,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URL; 
+import java.net.URL;
+
 /**
  *
  * @author andre
  */
 public class ConexionHTTP {
-    
+
     public static void main(String[] args) {
         Paciente pacienteNuevo = new Paciente();
         pacienteNuevo.setNombre("Fátima1");
@@ -36,50 +37,51 @@ public class ConexionHTTP {
         pacienteNuevo.setTelefono("2254879634");
         pacienteNuevo.setPassword("fatima23");
         pacienteNuevo.setIdMedico(2);
-        
+
         System.out.println("PostRequest");
         postRequest("http://localhost:8084/APINutricion/api/paciente/registrar", pacienteNuevo);
     }
-  
-    public static CodigoHTTP postRequest(String url,Paciente paciente) {
-   
-    CodigoHTTP respuesta = new CodigoHTTP();
-    String jsonBody = JsonUtility.createJson(paciente);
-    try {
-        URL urlServicio = new URL(url);
-        HttpURLConnection conexionHttp = (HttpURLConnection) urlServicio.openConnection();
-        conexionHttp.setRequestMethod("POST");
-        conexionHttp.setRequestProperty("Content-Type", "application/json");
-        conexionHttp.setDoOutput(true);
 
-        // Escribir el cuerpo de la solicitud
-        try (OutputStream os = conexionHttp.getOutputStream()) {
-            byte[] input = jsonBody.getBytes("UTF-8");
-            os.write(input, 0, input.length);
-        }
+    public static CodigoHTTP postRequest(String url, Paciente paciente) {
 
-        int codigoRespuesta = conexionHttp.getResponseCode();
-        respuesta.setCodigoRespuesta(codigoRespuesta);
-        
-        if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
-            System.out.println("OK");
-            respuesta.setContenido(convertirContenido(conexionHttp.getInputStream()));
-        } else {
-            System.out.println("Fail" + codigoRespuesta);
-            respuesta.setContenido("CODE ERROR: " + codigoRespuesta);
+        CodigoHTTP respuesta = new CodigoHTTP();
+        String jsonBody = JsonUtility.createJson(paciente);
+        System.out.println(jsonBody);
+        try {
+            URL urlServicio = new URL(url);
+            HttpURLConnection conexionHttp = (HttpURLConnection) urlServicio.openConnection();
+            conexionHttp.setRequestMethod("POST");
+            conexionHttp.setRequestProperty("Content-Type", "application/json");
+            conexionHttp.setDoOutput(true);
+
+            // Escribir el cuerpo de la solicitud
+            try (OutputStream os = conexionHttp.getOutputStream()) {
+                byte[] input = jsonBody.getBytes("UTF-8");
+                os.write(input, 0, input.length);
+            }
+
+            int codigoRespuesta = conexionHttp.getResponseCode();
+            respuesta.setCodigoRespuesta(codigoRespuesta);
+
+            if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
+                System.out.println("OK");
+                respuesta.setContenido(convertirContenido(conexionHttp.getInputStream()));
+            } else {
+                System.out.println("Fail" + codigoRespuesta);
+                respuesta.setContenido("CODE ERROR: " + codigoRespuesta);
+            }
+        } catch (MalformedURLException ex) {
+            System.out.println("Fail mal formed");
+            respuesta.setCodigoRespuesta(Constantes.ERROR_URL);
+            respuesta.setContenido("Error: " + ex.getMessage());
+        } catch (IOException iox) {
+            System.out.println("Fail IOException");
+            respuesta.setCodigoRespuesta(Constantes.ERROR_PETICION);
+            respuesta.setContenido("Error: " + iox.getMessage());
         }
-    } catch (MalformedURLException ex) {
-        System.out.println("Fail mal formed");
-        respuesta.setCodigoRespuesta(Constantes.ERROR_URL);
-        respuesta.setContenido("Error: " + ex.getMessage());
-    } catch (IOException iox) {
-        System.out.println("Fail IOException");
-        respuesta.setCodigoRespuesta(Constantes.ERROR_PETICION);
-        respuesta.setContenido("Error: " + iox.getMessage());
+        return respuesta;
     }
-    return respuesta;
-}
-    
+
     public static CodigoHTTP peticionGET(String url) {
 
         CodigoHTTP respuesta = new CodigoHTTP();
@@ -108,7 +110,7 @@ public class ConexionHTTP {
     public static CodigoHTTP peticionPOST(String url, String parametros) {
 
         CodigoHTTP respuesta = new CodigoHTTP();
-        
+
         try {
             URL urlServicio = new URL(url);
             HttpURLConnection conexionHttp = (HttpURLConnection) urlServicio.openConnection();
@@ -123,10 +125,10 @@ public class ConexionHTTP {
             //Termina la escritura
             int codigoRespuesta = conexionHttp.getResponseCode();
             respuesta.setCodigoRespuesta(codigoRespuesta);
-            
-            if(codigoRespuesta == HttpURLConnection.HTTP_OK){
+
+            if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
                 respuesta.setContenido(convertirContenido(conexionHttp.getInputStream()));
-            }else{
+            } else {
                 respuesta.setContenido("CODE ERROR: " + codigoRespuesta);
             }
         } catch (MalformedURLException ex) {
@@ -138,10 +140,10 @@ public class ConexionHTTP {
         }
         return respuesta;
     }
-    
-    public static CodigoHTTP peticionPUT(String url, String parametros){
+
+    public static CodigoHTTP peticionPUT(String url, String parametros) {
         CodigoHTTP respuesta = new CodigoHTTP();
-        
+
         try {
             URL urlServicio = new URL(url);
             HttpURLConnection conexionHttp = (HttpURLConnection) urlServicio.openConnection();
@@ -156,10 +158,10 @@ public class ConexionHTTP {
             //Termina la escritura
             int codigoRespuesta = conexionHttp.getResponseCode();
             respuesta.setCodigoRespuesta(codigoRespuesta);
-            
-            if(codigoRespuesta == HttpURLConnection.HTTP_OK){
+
+            if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
                 respuesta.setContenido(convertirContenido(conexionHttp.getInputStream()));
-            }else{
+            } else {
                 respuesta.setContenido("CODE ERROR: " + codigoRespuesta);
             }
         } catch (MalformedURLException ex) {
@@ -171,10 +173,10 @@ public class ConexionHTTP {
         }
         return respuesta;
     }
-    
-    public static CodigoHTTP peticionDELETE(String url, String parametros){
+
+    public static CodigoHTTP peticionDELETE(String url, String parametros) {
         CodigoHTTP respuesta = new CodigoHTTP();
-        
+
         try {
             URL urlServicio = new URL(url);
             HttpURLConnection conexionHttp = (HttpURLConnection) urlServicio.openConnection();
@@ -189,10 +191,10 @@ public class ConexionHTTP {
             //Termina la escritura
             int codigoRespuesta = conexionHttp.getResponseCode();
             respuesta.setCodigoRespuesta(codigoRespuesta);
-            
-            if(codigoRespuesta == HttpURLConnection.HTTP_OK){
+
+            if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
                 respuesta.setContenido(convertirContenido(conexionHttp.getInputStream()));
-            }else{
+            } else {
                 respuesta.setContenido("CODE ERROR: " + codigoRespuesta);
             }
         } catch (MalformedURLException ex) {
