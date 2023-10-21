@@ -64,7 +64,8 @@ public class FXMLEditarPacienteController implements Initializable {
         tfTelefono.setText(infoPaciente.getTelefono());
     }
     
-    private void btnRegistrarPaciente(ActionEvent event) {
+    @FXML
+    private void btnUpdate(ActionEvent event) {
         Paciente pacienteNuevo = new Paciente();
         pacienteNuevo.setNombre(tfNombre.getText());
         pacienteNuevo.setApellidoPaterno(tfApellidoPaterno.getText());
@@ -96,6 +97,11 @@ public class FXMLEditarPacienteController implements Initializable {
         } else {
             Utilidades.mostrarAlertaSimple("Error al editar", msj.getMensaje(), Alert.AlertType.ERROR);
         }
+    }
+    
+    @FXML
+    private void btnCancel(ActionEvent event) {
+        cerrarVentana();
     }
     
     private void cerrarVentana(){
