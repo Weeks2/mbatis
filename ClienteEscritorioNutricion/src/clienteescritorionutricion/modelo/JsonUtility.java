@@ -18,7 +18,7 @@ public class JsonUtility {
                 .append(addChild("email", paciente.getEmail(), true))
                 .append(addChild("telefono", paciente.getTelefono(), true))
                 .append(addChild("password", paciente.getPassword(), true))
-                .append(addChild("fotografia", "", true))
+                //.append(addChild("fotografia", "", true))
                 .append(addChild("idDomicilio", paciente.getIdDomicilio() + "", true))
                 .append(addChild("idMedico", paciente.getIdMedico() + "", false))
                 .append("}");
