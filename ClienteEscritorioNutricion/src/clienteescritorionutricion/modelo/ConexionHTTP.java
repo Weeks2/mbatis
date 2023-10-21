@@ -36,6 +36,7 @@ public class ConexionHTTP {
         pacienteNuevo.setEmail("fatima23@gmail.com");
         pacienteNuevo.setTelefono("2254879634");
         pacienteNuevo.setPassword("fatima23");
+        pacienteNuevo.setIdDomicilio(1);
         pacienteNuevo.setIdMedico(2);
 
         System.out.println("PostRequest");
