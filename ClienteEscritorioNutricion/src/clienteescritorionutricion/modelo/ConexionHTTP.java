@@ -22,6 +22,22 @@ import java.net.URL;
  */
 public class ConexionHTTP {
     
+    public static void main(String[] args) {
+        Paciente pacienteNuevo = new Paciente();
+        pacienteNuevo.setNombre("");
+        pacienteNuevo.setApellidoPaterno("");
+        pacienteNuevo.setApellidoMaterno("");
+        pacienteNuevo.setFechaNacimiento("");
+        pacienteNuevo.setSexo("");
+        pacienteNuevo.setPeso(0);
+        pacienteNuevo.setEstatura(0);
+        pacienteNuevo.setTallaInicial(0);
+        pacienteNuevo.setEmail("");
+        pacienteNuevo.setTelefono("");
+        pacienteNuevo.setPassword("");
+        pacienteNuevo.setIdMedico(0);
+        postRequest("", pacienteNuevo);
+    }
   
     public static CodigoHTTP postRequest(String url,Paciente paciente) {
    
