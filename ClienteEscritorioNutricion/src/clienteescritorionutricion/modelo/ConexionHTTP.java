@@ -24,19 +24,21 @@ public class ConexionHTTP {
     
     public static void main(String[] args) {
         Paciente pacienteNuevo = new Paciente();
-        pacienteNuevo.setNombre("");
-        pacienteNuevo.setApellidoPaterno("");
-        pacienteNuevo.setApellidoMaterno("");
-        pacienteNuevo.setFechaNacimiento("");
-        pacienteNuevo.setSexo("");
-        pacienteNuevo.setPeso(0);
-        pacienteNuevo.setEstatura(0);
-        pacienteNuevo.setTallaInicial(0);
-        pacienteNuevo.setEmail("");
-        pacienteNuevo.setTelefono("");
-        pacienteNuevo.setPassword("");
-        pacienteNuevo.setIdMedico(0);
-        postRequest("", pacienteNuevo);
+        pacienteNuevo.setNombre("Fátima1");
+        pacienteNuevo.setApellidoPaterno("Cigarroa");
+        pacienteNuevo.setApellidoMaterno("Reyes");
+        pacienteNuevo.setFechaNacimiento("2002-07-20");
+        pacienteNuevo.setSexo("F");
+        pacienteNuevo.setPeso(60);
+        pacienteNuevo.setEstatura((float) 1.5);
+        pacienteNuevo.setTallaInicial(50);
+        pacienteNuevo.setEmail("fatima23@gmail.com");
+        pacienteNuevo.setTelefono("2254879634");
+        pacienteNuevo.setPassword("fatima23");
+        pacienteNuevo.setIdMedico(2);
+        
+        System.out.println("PostRequest");
+        postRequest("http://localhost:8084/APINutricion/api/paciente/registrar", pacienteNuevo);
     }
   
     public static CodigoHTTP postRequest(String url,Paciente paciente) {
@@ -60,14 +62,18 @@ public class ConexionHTTP {
         respuesta.setCodigoRespuesta(codigoRespuesta);
         
         if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
+            System.out.println("OK");
             respuesta.setContenido(convertirContenido(conexionHttp.getInputStream()));
         } else {
+            System.out.println("Fail" + codigoRespuesta);
             respuesta.setContenido("CODE ERROR: " + codigoRespuesta);
         }
     } catch (MalformedURLException ex) {
+        System.out.println("Fail mal formed");
         respuesta.setCodigoRespuesta(Constantes.ERROR_URL);
         respuesta.setContenido("Error: " + ex.getMessage());
     } catch (IOException iox) {
+        System.out.println("Fail IOException");
         respuesta.setCodigoRespuesta(Constantes.ERROR_PETICION);
         respuesta.setContenido("Error: " + iox.getMessage());
     }
