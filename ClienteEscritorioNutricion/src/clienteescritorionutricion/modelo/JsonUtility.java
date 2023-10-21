@@ -1,6 +1,7 @@
 package clienteescritorionutricion.modelo;
 import clienteescritorionutricion.modelo.pojo.Paciente;
 import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonUtility {
     
@@ -21,6 +22,9 @@ private static String addChild(String key, String val, boolean comma) {
 
 private static String toJson() {
     Gson gson = new Gson();
+    ObjectMapper mapper = new ObjectMapper();
     return gson.toJson(new Paciente());
+    
+    
  }
 }
