@@ -1,7 +1,6 @@
 package clienteescritorionutricion.modelo;
 
 import clienteescritorionutricion.modelo.pojo.Paciente;
-import com.google.gson.Gson;
 
 public class JsonUtility {
 
@@ -10,7 +9,19 @@ public class JsonUtility {
         jsonBuilder.append("{")
                 .append(addChild("nombre", paciente.getNombre(), true))
                 .append(addChild("apellidoPaterno", paciente.getApellidoPaterno(), true))
-                .append(addChild("apellidoMaterno", paciente.getApellidoMaterno(), false))
+                .append(addChild("apellidoMaterno", paciente.getApellidoMaterno(), true))
+                .append(addChild("fechaNacimiento", paciente.getFechaNacimiento(), true))
+                .append(addChild("sexo", paciente.getSexo(), true))
+                .append(addChild("peso", paciente.getPeso() + "", true))
+                .append(addChild("estatura", paciente.getEstatura() + "", true))
+                .append(addChild("tallaInicial", paciente.getTallaInicial() + "", true))
+                .append(addChild("email", paciente.getEmail(), true))
+                .append(addChild("telefono", paciente.getTelefono(), true))
+                .append(addChild("password", paciente.getPassword(), true))
+                .append(addChild("fotografia", "", true))
+                .append(addChild("idDomicilio", paciente.getIdDomicilio() + "", true))
+                .append(addChild("idMedico", paciente.getIdMedico() + "", false))
+                
                 .append("}");
 
         return jsonBuilder.toString();
