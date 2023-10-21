@@ -73,32 +73,7 @@ public class ConexionHTTP {
     }
     return respuesta;
 }
-
     
-       
-       public static CodigoHTTP request(String method,String url ) {
-
-        CodigoHTTP respuesta = new CodigoHTTP();
-        try {
-            URL urlServicio = new URL(url);
-            HttpURLConnection conexionHttp = (HttpURLConnection) urlServicio.openConnection();
-            conexionHttp.setRequestMethod(method);
-            int codigoRespuesta = conexionHttp.getResponseCode();
-            respuesta.setCodigoRespuesta(codigoRespuesta);
-            if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
-                respuesta.setContenido(convertirContenido(conexionHttp.getInputStream()));
-            } else {
-                respuesta.setContenido("CODE ERROR: " + codigoRespuesta);
-            }
-        } catch (MalformedURLException ex) {
-            respuesta.setCodigoRespuesta(Constantes.ERROR_URL);
-            respuesta.setContenido("Error: " + ex.getMessage());
-        } catch (IOException iox) {
-            respuesta.setCodigoRespuesta(Constantes.ERROR_PETICION);
-            respuesta.setContenido("Error: " + iox.getMessage());
-        }
-        return respuesta;
-    }
     public static CodigoHTTP peticionGET(String url) {
 
         CodigoHTTP respuesta = new CodigoHTTP();
