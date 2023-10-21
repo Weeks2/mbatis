@@ -65,21 +65,14 @@ public class FXMLEditarPacienteController implements Initializable {
     }
     
     private void btnRegistrarPaciente(ActionEvent event) {
-        Paciente pacienteNuevo = new Paciente();
-        pacienteNuevo.setNombre(tfNombre.getText());
-        pacienteNuevo.setApellidoPaterno(tfApellidoPaterno.getText());
-        pacienteNuevo.setApellidoMaterno(tfApellidoMaterno.getText());
-        pacienteNuevo.setFechaNacimiento(dpFechaNacimiento.getValue().toString());
-        pacienteNuevo.setSexo("");
-        pacienteNuevo.setPeso(1.5F);
-        pacienteNuevo.setEstatura(0.1F);
-        pacienteNuevo.setTallaInicial(50);
-        pacienteNuevo.setEmail(tfEmail.getText());
-        pacienteNuevo.setTelefono(tfTelefono.getText());
-        pacienteNuevo.setPassword("");
-        pacienteNuevo.setIdMedico(1);
         
-        editarPaciente(pacienteNuevo);
+        infoPaciente.setNombre(tfNombre.getText());
+        infoPaciente.setApellidoPaterno(tfApellidoPaterno.getText());
+        infoPaciente.setApellidoMaterno(tfApellidoMaterno.getText());
+        infoPaciente.setFechaNacimiento(dpFechaNacimiento.getValue().toString());
+        infoPaciente.setEmail(tfEmail.getText());
+        infoPaciente.setTelefono(tfTelefono.getText());        
+        editarPaciente(infoPaciente);
         
     }
     
