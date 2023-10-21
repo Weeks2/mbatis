@@ -79,7 +79,7 @@ public class FXMLEditarPacienteController implements Initializable {
         pacienteNuevo.setPassword("");
         pacienteNuevo.setIdMedico(1);
         
-        registrarPaciente(pacienteNuevo);
+        editarPaciente(pacienteNuevo);
         
     }
     
@@ -87,14 +87,14 @@ public class FXMLEditarPacienteController implements Initializable {
         
     }
     
-    private void registrarPaciente (Paciente pacienteNuevo){
-        Mensaje msj = PacienteDAO.registrarPaciente(pacienteNuevo);
+    private void editarPaciente (Paciente pacienteNuevo){
+        Mensaje msj = PacienteDAO.updatePaciente(pacienteNuevo);
         
         if (!msj.isError()) {
-            Utilidades.mostrarAlertaSimple("Paciente registrado", msj.getMensaje(), Alert.AlertType.INFORMATION);
+            Utilidades.mostrarAlertaSimple("Paciente editado", msj.getMensaje(), Alert.AlertType.INFORMATION);
             cerrarVentana();
         } else {
-            Utilidades.mostrarAlertaSimple("Error al registrar", msj.getMensaje(), Alert.AlertType.ERROR);
+            Utilidades.mostrarAlertaSimple("Error al editar", msj.getMensaje(), Alert.AlertType.ERROR);
         }
     }
     
