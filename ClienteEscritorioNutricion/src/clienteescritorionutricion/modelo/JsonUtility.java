@@ -46,5 +46,15 @@ public class JsonUtility {
                 + "    \"idMedico\": 2\n"
                 + "}";
     }
+    
+    private static String getParametros(Paciente paciente) {
+      return  String.format("nombre=%s&" + "apellidoPaterno=%s&" + "apellidoMaterno=%s&" + "fechaNacimiento=%s&sexo=%s&"
+                                          + "peso=%s&" + "estatura=%s&" + "tallaInicial=%s&" + "email=%s&"
+                                          + "telefono=%s&" + "password=%s&" + "idMedico=%s&", 
+                                          paciente.getNombre(), paciente.getApellidoPaterno(), paciente.getApellidoMaterno(),
+                                          paciente.getFechaNacimiento(), paciente.getSexo(), paciente.getPeso(),
+                                          paciente.getEstatura(), paciente.getTallaInicial(), paciente.getEmail(),
+                                          paciente.getTelefono(), paciente.getPassword(), paciente.getIdMedico());
+    }
 
 }

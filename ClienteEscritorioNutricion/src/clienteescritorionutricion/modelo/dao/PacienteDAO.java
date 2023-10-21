@@ -42,18 +42,10 @@ public class PacienteDAO {
         return respuesta;
     }
     
+ 
     public static Mensaje registrarPaciente(Paciente paciente){
-        Mensaje msj = new Mensaje();
-        String url = Constantes.URL_WS + "paciente/registrar";
-        String parametros = String.format("nombre=%s&" + "apellidoPaterno=%s&" + "apellidoMaterno=%s&" + "fechaNacimiento=%s&sexo=%s&"
-                                          + "peso=%s&" + "estatura=%s&" + "tallaInicial=%s&" + "email=%s&"
-                                          + "telefono=%s&" + "password=%s&" + "idMedico=%s&", 
-                                          paciente.getNombre(), paciente.getApellidoPaterno(), paciente.getApellidoMaterno(),
-                                          paciente.getFechaNacimiento(), paciente.getSexo(), paciente.getPeso(),
-                                          paciente.getEstatura(), paciente.getTallaInicial(), paciente.getEmail(),
-                                          paciente.getTelefono(), paciente.getPassword(), paciente.getIdMedico());
-        
-        CodigoHTTP respuestaWS = ConexionHTTP.peticionPOST(url, parametros);
+        Mensaje msj = new Mensaje();        
+        CodigoHTTP respuestaWS = ConexionHTTP.postRequest(Constantes.URL_WS + "paciente/registrar", paciente);
         
         if (respuestaWS.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
             Gson gson = new Gson();
