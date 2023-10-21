@@ -15,6 +15,6 @@ public class JsonUtility {
 }
 
 private static String addChild(String key, String val, boolean comma) {
-    return String.format("\"%s\":\"%s\"%s", key, val, comma ? "" :  "\",");
+    return String.format("\"%s\":\"%s\"%s", key, val, comma ? "\",":"");
 }
 }
