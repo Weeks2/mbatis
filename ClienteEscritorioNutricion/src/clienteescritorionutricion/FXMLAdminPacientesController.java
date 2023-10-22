@@ -137,4 +137,8 @@ public class FXMLAdminPacientesController implements Initializable {
         colEmail.setCellValueFactory(new PropertyValueFactory("email"));
         colTelefono.setCellValueFactory(new PropertyValueFactory("telefono"));
     }
+
+    @FXML
+    private void btnEliminar(ActionEvent event) {
+    }
 }

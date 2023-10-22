@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -42,6 +43,18 @@ public class FXMLEditarPacienteController implements Initializable {
     private TextField tfEmail;
     @FXML
     private TextField tfTelefono;
+    @FXML
+    private Label lbErrorNombre;
+    @FXML
+    private Label lbErrorApellidoPaterno;
+    @FXML
+    private Label lbErrorApellidoMaterno;
+    @FXML
+    private Label lbErrorFechaNacimiento;
+    @FXML
+    private Label lbErrorEmail;
+    @FXML
+    private Label lbErrorTelefono;
 
     /**
      * Initializes the controller class.
@@ -53,6 +66,7 @@ public class FXMLEditarPacienteController implements Initializable {
     
     public void inicializarInformacionPaciente(Paciente infoPaciente){
         this.infoPaciente = infoPaciente;
+        System.out.println(infoPaciente.getIdPaciente());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate fechaNacimientoPaciente = LocalDate.parse(infoPaciente.getFechaNacimiento(), formatter);
         tfNombre.setText(infoPaciente.getNombre());
@@ -64,7 +78,8 @@ public class FXMLEditarPacienteController implements Initializable {
         tfTelefono.setText(infoPaciente.getTelefono());
     }
     
-    private void btnRegistrarPaciente(ActionEvent event) {
+    @FXML
+    private void btnUpdate(ActionEvent event) {
         
         infoPaciente.setNombre(tfNombre.getText());
         infoPaciente.setApellidoPaterno(tfApellidoPaterno.getText());
@@ -89,6 +104,11 @@ public class FXMLEditarPacienteController implements Initializable {
         } else {
             Utilidades.mostrarAlertaSimple("Error al editar", msj.getMensaje(), Alert.AlertType.ERROR);
         }
+    }
+    
+    @FXML
+    private void btnCancel(ActionEvent event) {
+        cerrarVentana();
     }
     
     private void cerrarVentana(){

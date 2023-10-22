@@ -55,12 +55,12 @@
          </font>
       </Label>
       <TextField fx:id="tfTelefono" layoutX="512.0" layoutY="233.0" />
-      <Button layoutX="105.0" layoutY="320.0" mnemonicParsing="false" style="-fx-background-color: #39BAFF;" text="Actualizar">
+      <Button layoutX="105.0" layoutY="320.0" mnemonicParsing="false" onAction="#btnUpdate" style="-fx-background-color: #39BAFF;" text="Actualizar">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="561.0" layoutY="320.0" mnemonicParsing="false" style="-fx-background-color: #FF3939;" text="Cancelar">
+      <Button layoutX="561.0" layoutY="320.0" mnemonicParsing="false" onAction="#btnCancel" style="-fx-background-color: #FF3939;" text="Cancelar">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

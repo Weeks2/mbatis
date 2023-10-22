@@ -65,7 +65,7 @@ public class ConexionHTTP {
             respuesta.setCodigoRespuesta(codigoRespuesta);
 
             if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
-                System.out.println("OK");
+                System.out.println("OK, Saved");
                 respuesta.setContenido(convertirContenido(conexionHttp.getInputStream()));
             } else {
                 System.out.println("Fail" + codigoRespuesta);
@@ -105,7 +105,7 @@ public class ConexionHTTP {
             respuesta.setCodigoRespuesta(codigoRespuesta);
 
             if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
-                System.out.println("OK");
+                System.out.println("OK, updated");
                 respuesta.setContenido(convertirContenido(conexionHttp.getInputStream()));
             } else {
                 System.out.println("Fail" + codigoRespuesta);
