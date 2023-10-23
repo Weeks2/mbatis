@@ -1,4 +1,4 @@
-package modelo.pojo;
+package model;
 
 /**
  *

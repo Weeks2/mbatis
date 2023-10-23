@@ -1,4 +1,4 @@
-package ws;
+package controller;
 
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -12,10 +12,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
-import modelo.PacienteDAO;
-import modelo.pojo.Mensaje;
-import modelo.pojo.Paciente;
-import validator.PacienteValidator;
+import dao.PacienteDAO;
+import model.Mensaje;
+import model.Paciente;
+import common.PacienteValidator;
 
 /**
  *

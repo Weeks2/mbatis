@@ -1,9 +1,9 @@
-package modelo;
+package dao;
 
 import java.util.HashMap;
-import modelo.pojo.Medico;
-import modelo.pojo.RespuestaLoginEscritorio;
-import mybatis.MyBatisUtil;
+import model.Medico;
+import model.RespuestaLoginEscritorio;
+import common.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 
 public class AutenticacionDAO {

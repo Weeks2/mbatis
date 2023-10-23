@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mybatis;
+package common;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -18,7 +18,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  */
 public class MyBatisUtil {
 
-    public static final String RESURCE = "mybatis/mybatis-config.xml";
+    public static final String RESURCE = "config/mybatis-config.xml";
     public static final String ENVINROMENT = "development";
 
     public static SqlSession getSesion() {

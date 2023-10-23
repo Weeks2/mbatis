@@ -1,7 +1,7 @@
-package validator;
+package common;
 
-import modelo.pojo.Mensaje;
-import modelo.pojo.Paciente;
+import model.Mensaje;
+import model.Paciente;
 
 public class PacienteValidator {
 

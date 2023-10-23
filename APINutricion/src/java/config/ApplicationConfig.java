@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ws;
+package config;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
@@ -29,8 +29,8 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(ws.AutenticacionWS.class);
-        resources.add(ws.PacientesWS.class);
+        resources.add(controller.AutenticacionWS.class);
+        resources.add(controller.PacientesWS.class);
     }
     
 }

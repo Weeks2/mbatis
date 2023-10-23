@@ -1,10 +1,10 @@
-package modelo;
+package dao;
 
 import java.util.HashMap;
 import java.util.List;
-import modelo.pojo.Mensaje;
-import modelo.pojo.Paciente;
-import mybatis.MyBatisUtil;
+import model.Mensaje;
+import model.Paciente;
+import common.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 
 public class PacienteDAO {
